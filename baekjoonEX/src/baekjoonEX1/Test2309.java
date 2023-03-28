@@ -23,7 +23,7 @@ public class Test2309 {
 					arr[j] = 0;							//그 배열의 값 = 0
 					Arrays.sort(arr);					//2개의 배열 값 뺀 후의 배열 오름차순 정렬
 					for(int k = 2; k<9; k++) {			
-						System.out.println(arr[k]);		// 오름차순으로 정렬된 배열 출력
+						System.out.println(arr[k]);		//오름차순으로 정렬된 배열 출력
 					}
 					return;
 				}
