@@ -24,8 +24,8 @@ public class Test2445 {
 			}
 			System.out.println();
 		}
-		for(int i = 1; i<N; i++) {
-			for(int j = i; j<N; j++) {
+		for(int i = 1; i<N; i++) {		// i = 1부터 N보다 작을때까지 i 1씩 증가
+			for(int j = i; j<N; j++) {	
 				System.out.print("*");
 			}
 			for(int k = 1; k<=2*i; k++) {
