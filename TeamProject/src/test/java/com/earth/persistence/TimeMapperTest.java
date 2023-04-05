@@ -17,6 +17,11 @@ public class TimeMapperTest {
 	
 	@Test
 	public void testGetTime() {
-		System.out.println(timeMapper.getTime());
+		System.out.println(timeMapper.getTime1());
+	}
+	
+	@Test
+	public void testGetTime2() {
+		System.out.println(timeMapper.getTime2());
 	}
 }
