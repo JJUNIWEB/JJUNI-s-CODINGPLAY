@@ -118,6 +118,7 @@ article {
 
 
 
+
 /*구내비바*/
 .navigation a {
     position: relative;
@@ -219,6 +220,17 @@ article {
     transform: translateX(0);
     transition: transform 0.18s ease;
 }
+
+/* 중복아이디 존재하지 않는경우 */
+.email_input_re_1{
+	color : green;
+	display : none;
+	}
+/* 중복아이디 존재하는 경우 */
+.email_input_re_2{
+	color : red;
+	display : none;
+	}
 
 .icon-close {
     position: absolute;

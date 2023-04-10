@@ -9,9 +9,13 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:wght@200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.min.js" integrity="sha384-heAjqF+bCxXpCWLa6Zhcp4fu20XoNIA98ecBC1YkdXhszjoejr5y9Q77hIrv8R9i" crossorigin="anonymous"></script>
+	  <script
+		  src="https://code.jquery.com/jquery-3.4.1.js"
+		  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+		  crossorigin="anonymous">
+	</script>  
 </head>
 <body>
-    <script type="text/javascript" src="login.js"></script>
     <header>
         <h2 class="logo">With DANG</h2>
         <div class="navigation">
@@ -62,21 +66,22 @@
         </div>
         <div class="form-box register">
             <h2>회원가입</h2>
-<!--3열로 만들어야하는데 나중에 span으로 바꿔보거나 그리드 전에 저장 조지고 울지않기-->
-            <form action="#" method="post">
+            <form id="join_form" method="post">
                 <div class="input-box">
                     <span class="icon">
                         <ion-icon name="mail"></ion-icon>
                     </span>
-                    <input type="email" required>
+                    <input type="email" class="email_input" name="user_email" required id = "user_email">
                     <label>Email</label>
-                </div>
-
+               	</div>
+                	<span class="email_input_re_1">사용 가능한 이메일입니다.</span>
+					<span class="emial_input_re_2">이메일이 이미 존재합니다.</span>
+                
                 <div class="input-box">
                     <span class="icon">
                         <ion-icon name="lock-closed"></ion-icon>
                     </span>
-                    <input type="password" required>
+                    <input type="password" name="user_pw" required id = "user_pw">
                     <label>Password</label>
                 </div>
 
@@ -84,7 +89,7 @@
                     <span class="icon">
                         <ion-icon name="person"></ion-icon>
                     </span>
-                    <input type="text" required>
+                    <input type="text" name="user_name" required id = "user_name">
                     <label>이름</label>
                 </div>
 
@@ -92,13 +97,14 @@
                     <span class="icon">
                         <ion-icon name="phone"></ion-icon>
                     </span>
-                    <input type="text" required>
+                    <input type="tel" name="user_pnum" required id = "user_pnum">
                     <label>연락처</label>
                 </div>
                 <div class="remember-forgot">
                     <label><input type="checkbox">회원가입 약관에 동의합니다.</label>
                 </div>
-                <button type="submit" class="btn"><a href="#"></a>회원가입</button>
+                <!-- <button type="submit" class="btn">회원가입</button> -->
+                <input type="button" class="btn" value="회원가입"/>
                 <div class="login-register">
                     <p>이미 회원이신가요?<a href="#" class="login-link"> Login</a></p>
                 </div>
@@ -126,6 +132,27 @@
         iconClose.addEventListener("click", ()=> {
             wrapper.classList.remove("active-popup");
         });
-    </script>
+        </script>
+        
+        <script>
+
+        $(document).ready(function(){
+        	//회원가입 버튼(회원가입 기능 작동)
+        	$(".btn").click(function(){
+        		$("#join_form").attr("action", "/main");
+        		$("#join_form").submit();
+        	});
+        });
+        
+      //아이디 중복검사
+        $('.email_input').on("propertychange change keyup paste input", function(){
+
+        	console.log("keyup 테스트");	
+
+        });// function 종료
+
+        </script>
+        
+    
 </body>
 </html>

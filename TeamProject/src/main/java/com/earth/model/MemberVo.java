@@ -1,14 +1,27 @@
 package com.earth.model;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 
 @Data
 public class MemberVo {
 
-	private int user_no;
 	private String user_email;
 	private String user_pw;
 	private String user_name;
-	private String user_pnum;
+	
+	@Override
+	public String toString() {
+		return "MemberVo [user_email=" + user_email + ", user_pw=" + user_pw + ", user_name=" + user_name + "]";
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 }

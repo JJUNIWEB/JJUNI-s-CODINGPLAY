@@ -19,11 +19,11 @@ public class MemberMapperTest {
 	public void memberJoin() throws Exception {
 		MemberVo member = new MemberVo();
 		
-		member.setUser_no(0);
-		member.setUser_email("spring_test");
-		member.setUser_pw("1111");
-		member.setUser_name("Test");
-		member.setUser_pnum("Test");
+		
+		member.setUser_email("spring_test111");
+		member.setUser_pw("1111111");
+		member.setUser_name("Test111");
+		
 		
 		membermapper.memberJoin(member);
 	}
