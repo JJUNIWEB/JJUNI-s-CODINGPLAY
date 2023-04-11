@@ -1,5 +1,9 @@
 package com.earth.withdang;
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.earth.model.MemberVo;
 import com.earth.service.MemberService;
@@ -21,7 +27,7 @@ public class MemberController {
 	@Autowired
 	private MemberService memberservice;
 	
-	@GetMapping("/main1")
+	@RequestMapping(value = "/" , method = RequestMethod.GET)
 	public String mainPageGET() {
 		
 		return "/main1";
@@ -38,7 +44,7 @@ public class MemberController {
 		//회원가입 서비스 실행
 		memberservice.memberJoin(member);
 
-		return "redirect:/main1";
+		return "redirect:/";
 		
 	}
 	
@@ -47,4 +53,14 @@ public class MemberController {
 		
 		return "/login";
 	}
+	
+	// 아이디 중복 검사
+		@RequestMapping(value = "/login", method = RequestMethod.POST)
+		@ResponseBody
+		public void memberIdChkPOST(String user_email) throws Exception{
+			
+			log.info("memberIdChk() 진입");
+			
+		} // memberIdChkPOST() 종료	
+	
 }
