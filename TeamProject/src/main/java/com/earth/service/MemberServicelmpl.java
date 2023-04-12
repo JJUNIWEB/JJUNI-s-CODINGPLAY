@@ -22,6 +22,11 @@ public class MemberServicelmpl implements MemberService {
 		membermapper.memberJoin(member);
 	}
 
+	@Override
+	public int emailCheck(String user_email) throws Exception {
+		return membermapper.emailCheck(user_email);
+	}
+
 	
 
 	

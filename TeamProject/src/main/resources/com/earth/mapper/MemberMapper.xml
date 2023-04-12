@@ -7,12 +7,14 @@
 			insert into tb_user values(#{user_name},#{user_email},#{user_pw})
 		</insert>
 		
-		<!-- 아이디 중복 확인하기  -->
-	<select id="emailCheck" resultType="int">
-		SELECT COUNT(*)
-		FROM tb_user 
-		WHERE user_email = #{user_email}
-	</select>
+		<!-- 아이디 중복검사 -->
+  		<select id="emailCheck" resultType="int">
+  	
+  		select count(*) 
+  		from tb_user 
+  		where user_email = #{user_email}
+  	
+  	</select>
 		
   </mapper>
 

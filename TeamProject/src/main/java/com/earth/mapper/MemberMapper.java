@@ -7,5 +7,8 @@ public interface MemberMapper {
 
 	public void memberJoin(MemberVo member);
 	
+	// 이메일 중복 검사
+	public int emailCheck(String user_email);
+	
 
 }

@@ -57,9 +57,20 @@ public class MemberController {
 	// 아이디 중복 검사
 		@RequestMapping(value = "/login", method = RequestMethod.POST)
 		@ResponseBody
-		public void memberIdChkPOST(String user_email) throws Exception{
+		public String memberIdChkPOST(String user_email) throws Exception{
 			
-			log.info("memberIdChk() 진입");
+			int result = memberservice.emailCheck(user_email);
+			
+			if(result != 0) {
+				
+				return "fail";	// 중복 아이디가 존재
+				
+			} else {
+				
+				return "success";	// 중복 아이디 x
+				
+			}	
+			
 			
 		} // memberIdChkPOST() 종료	
 	

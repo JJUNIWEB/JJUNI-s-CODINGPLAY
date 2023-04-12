@@ -41,13 +41,18 @@
             <div class="form signupform">
                 <form id="join_form" method="post">
                     <h3>회원가입</h3>
-                    <input type="text" name="user_name" placeholder="이름">
+                    <input type="text"  class="input_name" name="user_name" placeholder="이름">
+                    <span class="final_name_ck">이름을 입력해 주세요</span>
                     <input type="email" class="input_email" name="user_email" placeholder="Email">
-                    <span class="user_email_re_1">사용 가능한 아이디입니다.</span>
-					<span class="user_email_re_2">아이디가 이미 존재합니다.</span>
-                    <input type="button" class="check" onclick="emailOverlap()" value="중복확인"/>
-                    <input type="password" id="user_pw" name="user_pw" placeholder="Password">
-                    <input type="password" id="user_pw2" name="user_pw2" placeholder="Confirm Password" onkeyup="passConfirm()"><span id ="confirmMsg"></span>
+                    <span class="user_email_re_1">사용 가능한 이메일입니다</span>
+					<span class="user_email_re_2">이메일이 이미 존재합니다</span>
+					<span class="final_email_ck">이메일을 입력해 주세요</span>
+                    <input type="password" class="input_pw"  name="user_pw" placeholder="Password">
+                    <span class="final_pw_ck">비밀번호를 입력해 주세요</span>
+                    <input type="password" class="input_pwck" name="user_pw2" placeholder="Confirm Password" ><span id ="confirmMsg"></span>
+                    <span class="final_pwck_ck">비밀번호 확인을 입력해 주세요</span>
+                    <span class="pwck_input_re_1">비밀번호가 일치합니다.</span>
+                	<span class="pwck_input_re_2">비밀번호가 일치하지 않습니다.</span>
                     <input type="button" class="btn" value="가입하기">
                 </form>
             </div>
@@ -55,7 +60,7 @@
     </div>
     <div class="return-main"><a href="main1.jsp">메인화면으로 돌아가기</a></div>
     <script>
-        const signin = document.querySelector(".signinbtn");
+    	const signin = document.querySelector(".signinbtn");
         const signup = document.querySelector(".signupbtn");
         const formbox = document.querySelector(".form-box");
         const body = document.querySelector("body");
@@ -67,48 +72,120 @@
             formbox.classList.remove("active")
             body.classList.remove("active")
         }
-        	
-        function passConfirm() {
-        	/* 비밀번호, 비밀번호 확인 입력창에 입력된 값을 비교해서 같다면 비밀번호 일치, 그렇지 않으면 불일치 라는 텍스트 출력.*/
-        	/* document : 현재 문서를 의미함. 작성되고 있는 문서를 뜻함. */
-        	/* getElementByID('아이디') : 아이디에 적힌 값을 가진 id의 value를 get을 해서 password 변수 넣기 */
-        		var password = document.getElementById('user_pw');					//비밀번호 
-        		var passwordConfirm = document.getElementById('user_pw2');	//비밀번호 확인 값
-        		var confrimMsg = document.getElementById('confirmMsg');				//확인 메세지
-        		var correctColor = "#00ff00";	//맞았을 때 출력되는 색깔.
-        		var wrongColor ="#ff0000";	//틀렸을 때 출력되는 색깔
-        		
-        		if(user_pw.value == user_pw2.value){//password 변수의 값과 passwordConfirm 변수의 값과 동일하다.
-        			confirmMsg.style.color = correctColor;/* span 태그의 ID(confirmMsg) 사용  */
-        			confirmMsg.innerHTML ="비밀번호 일치";/* innerHTML : HTML 내부에 추가적인 내용을 넣을 때 사용하는 것. */
-        		}else{
-        			confirmMsg.style.color = wrongColor;
-        			confirmMsg.innerHTML ="비밀번호 불일치";
-        		}
-        	}
+        
+        /* 유효성 검사 통과유무 변수 */
+	    var emailCheck = false;            // 이메일
+	    var emailckCheck = false;            // 이메일 중복 검사
+	    var pwCheck = false;            // 비번
+	    var pwckCheck = false;            // 비번 확인
+	    var pwckcorCheck = false;        // 비번 확인 일치 확인
+	    var nameCheck = false;            // 이름
         	
       		$(document).ready(function(){
         	//회원가입 버튼(회원가입 기능 작동)
         	$(".btn").click(function(){
-        		$("#join_form").attr("action", "/withdang/main1");
-        		$("#join_form").submit();
+        		
+        		/* 입력값 변수 */
+                var email = $('.input_email').val();                 // 이메일 입력란
+                var pw = $('.input_pw').val();                // 비밀번호 입력란
+                var pwck = $('.input_pwck').val();            // 비밀번호 확인 입력란
+                var name = $('.input_name').val();            // 이름 입력란
+               
+                /* 이메일 유효성검사 */
+                if(email == ""){
+                    $('.final_email_ck').css('display','block');
+                    emailCheck = false;
+                }else{
+                    $('.final_email_ck').css('display', 'none');
+                    emailCheck = true;
+                }
+        		
+                /* 비밀번호 유효성 검사 */
+                if(pw == ""){
+                    $('.final_pw_ck').css('display','block');
+                    pwCheck = false;
+                }else{
+                    $('.final_pw_ck').css('display', 'none');
+                    pwCheck = true;
+                }
+                
+                /* 비밀번호 확인 유효성 검사 */
+                if(pwck == ""){
+                    $('.final_pwck_ck').css('display','block');
+                    pwckCheck = false;
+                }else{
+                    $('.final_pwck_ck').css('display', 'none');
+                    pwckCheck = true;
+                }
+                
+                /* 이름 유효성 검사 */
+                if(name == ""){
+                    $('.final_name_ck').css('display','block');
+                    nameCheck = false;
+                }else{
+                    $('.final_name_ck').css('display', 'none');
+                    nameCheck = true;
+                }
+                
+                /* 최종 유효성 검사 */
+                if(emailCheck&&emailckCheck&&pwCheck&&pwckCheck&&pwckcorCheck&&nameCheck){
+         		
+                	$("#join_form").attr("action", "/withdang/main1");
+            		$("#join_form").submit();
+                	
+                }    
+                
+                return false;
+        		
         	});
         });
       		
-      		//아이디 중복검사
+      		//이메일 중복검사
   			$('.input_email').on("propertychange change keyup paste input", function(){
 
-   			/* console.log("keyup 테스트"); */	
+   			/* console.log("keyup 테스트"); */ 	
    			var user_email = $('.input_email').val();			// .id_input에 입력되는 값
 			var data = {user_email : user_email}				// '컨트롤에 넘길 데이터 이름' : '데이터(.id_input에 입력되는 값)'
 	
 			$.ajax({
 			type : "post",
-			url : "/login",
-			data : data
+			url : "/withdang/login",
+			data : data,
+			 success : function(result){
+				 if(result != 'fail'){
+						$('.user_email_re_1').css("display","inline-block");
+						$('.user_email_re_2').css("display", "none");	
+						emailckCheck = true;
+					} else {
+						$('.user_email_re_2').css("display","inline-block");
+						$('.user_email_re_1').css("display", "none");	
+						emailckCheck = false;
+					} 
+				
+			}// success 종료
 		}); // ajax 종료	
 
-   		});// function 종료
+   	});// function 종료
+   	
+   	/* 비밀번호 확인 일치 유효성 검사 */
+    
+   	$('.input_pwck').on("propertychange change keyup paste input", function(){
+   	        
+   		var pw = $('.input_pw').val();
+   	    var pwck = $('.input_pwck').val();
+   	    $('.final_pwck_ck').css('display', 'none');
+   	    
+   	 	if(pw == pwck){
+         	$('.pwck_input_re_1').css('display','block');
+         	$('.pwck_input_re_2').css('display','none');
+         	pwckcorCheck = true;
+     	}else{
+        	$('.pwck_input_re_1').css('display','none');
+         	$('.pwck_input_re_2').css('display','block');
+         	pwckcorCheck = false;
+     }        
+   	    
+   	});    
         
         </script>
         
