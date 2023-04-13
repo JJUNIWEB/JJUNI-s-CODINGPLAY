@@ -14,7 +14,13 @@
   		from tb_user 
   		where user_email = #{user_email}
   	
-  	</select>
+  		</select>
+  		
+  		<select id="memberLogin" resultType="com.earth.model.MemberVo">
+  			select user_email, user_pw, user_name  
+  			from tb_user 
+  			where user_email = #{user_email} and user_pw = #{user_pw}
+  		</select>
 		
   </mapper>
 

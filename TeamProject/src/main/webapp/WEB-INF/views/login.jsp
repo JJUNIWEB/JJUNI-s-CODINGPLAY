@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -30,11 +31,14 @@
         </div>
         <div class="form-box">
             <div class="form signinform">
-                <form>
+                <form id="login_form" method="post">
                     <h3>로그인</h3>
-                    <input type="text" placeholder="Email">
-                    <input type="password" placeholder="Password">
-                    <input type="submit" value="Login">
+                    <input type="text" name="user_email" placeholder="Email">
+                    <input type="password" name="user_pw" placeholder="Password">
+                    <c:if test = "${result == 0 }">
+                    	<div class = "login_warn">사용자 ID 또는 비밀번호를 잘못 입력하셨습니다.</div>
+                    </c:if>
+                    	<input type="button" class="login_button" value="Login">
                     <a href="#">forget password?</a>
                 </form>
             </div>
@@ -53,12 +57,12 @@
                     <span class="final_pwck_ck">비밀번호 확인을 입력해 주세요</span>
                     <span class="pwck_input_re_1">비밀번호가 일치합니다.</span>
                 	<span class="pwck_input_re_2">비밀번호가 일치하지 않습니다.</span>
-                    <input type="button" class="btn" value="가입하기">
-                </form>
+                	<input type="button" class="btn" value="가입하기">
+                    </form>
             </div>
         </div>
     </div>
-    <div class="return-main"><a href="main1.jsp">메인화면으로 돌아가기</a></div>
+    <div class="return-main"><a href="/withdang/">메인화면으로 돌아가기</a></div>
     <script>
     	const signin = document.querySelector(".signinbtn");
         const signup = document.querySelector(".signupbtn");
@@ -80,92 +84,106 @@
 	    var pwckCheck = false;            // 비번 확인
 	    var pwckcorCheck = false;        // 비번 확인 일치 확인
 	    var nameCheck = false;            // 이름
-        	
-      		$(document).ready(function(){
+        var pwdCheck = false;			// 비번 정규식 확인	
+      	
+        $(document).ready(function(){
         	//회원가입 버튼(회원가입 기능 작동)
         	$(".btn").click(function(){
         		
-        		/* 입력값 변수 */
-                var email = $('.input_email').val();                 // 이메일 입력란
-                var pw = $('.input_pw').val();                // 비밀번호 입력란
-                var pwck = $('.input_pwck').val();            // 비밀번호 확인 입력란
-                var name = $('.input_name').val();            // 이름 입력란
+        /* 입력값 변수 */
+        var email = $('.input_email').val();          // 이메일 입력란
+        var pw = $('.input_pw').val();                // 비밀번호 입력란
+        var pwck = $('.input_pwck').val();            // 비밀번호 확인 입력란
+        var name = $('.input_name').val();            // 이름 입력란
+        var pwdCheck = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
                
-                /* 이메일 유효성검사 */
-                if(email == ""){
-                    $('.final_email_ck').css('display','block');
-                    emailCheck = false;
-                }else{
-                    $('.final_email_ck').css('display', 'none');
-                    emailCheck = true;
-                }
+           /* 이메일 유효성검사 */
+           if(email == ""){
+               $('.final_email_ck').css('display','block');
+               emailCheck = false;
+           }else{
+               $('.final_email_ck').css('display', 'none');
+               emailCheck = true;
+           }
         		
-                /* 비밀번호 유효성 검사 */
-                if(pw == ""){
-                    $('.final_pw_ck').css('display','block');
-                    pwCheck = false;
-                }else{
-                    $('.final_pw_ck').css('display', 'none');
-                    pwCheck = true;
-                }
-                
-                /* 비밀번호 확인 유효성 검사 */
-                if(pwck == ""){
-                    $('.final_pwck_ck').css('display','block');
-                    pwckCheck = false;
-                }else{
-                    $('.final_pwck_ck').css('display', 'none');
-                    pwckCheck = true;
-                }
-                
-                /* 이름 유효성 검사 */
-                if(name == ""){
-                    $('.final_name_ck').css('display','block');
-                    nameCheck = false;
-                }else{
-                    $('.final_name_ck').css('display', 'none');
-                    nameCheck = true;
-                }
-                
-                /* 최종 유효성 검사 */
-                if(emailCheck&&emailckCheck&&pwCheck&&pwckCheck&&pwckcorCheck&&nameCheck){
-         		
-                	$("#join_form").attr("action", "/withdang/main1");
-            		$("#join_form").submit();
-                	
-                }    
-                
-                return false;
+          /* 비밀번호 유효성 검사 */
+          if(pw == ""){
+              $('.final_pw_ck').css('display','block');
+              pwCheck = false;
+          }else{
+              $('.final_pw_ck').css('display', 'none');
+              pwCheck = true;
+          
+              if (!pwdCheck.test(pw)) {
+          	    alert("비밀번호는 최소 8 자, 최소 하나의 문자+하나의 숫자 및 하나의 특수 문자 조합으로 사용해야 합니다.");
+          	    pw.focus
+          	    pwdCheck = false;
+          	  } else {
+          		  pwdCheck = true;
+          	  }
+          
+          }
+          
+          
+          
+          
+          /* 비밀번호 확인 유효성 검사 */
+          if(pwck == ""){
+              $('.final_pwck_ck').css('display','block');
+              pwckCheck = false;
+          }else{
+              $('.final_pwck_ck').css('display', 'none');
+              pwckCheck = true;
+          }
+          
+          /* 이름 유효성 검사 */
+          if(name == ""){
+              $('.final_name_ck').css('display','block');
+              nameCheck = false;
+          }else{
+              $('.final_name_ck').css('display', 'none');
+              nameCheck = true;
+          }
+          
+          /* 최종 유효성 검사 */
+          if(emailCheck&&emailckCheck&&pwCheck&&pwckCheck&&pwckcorCheck&&nameCheck&&pwdCheck){
+   		
+          	$("#join_form").attr("action", "/withdang/main1");
+      		$("#join_form").submit();
+          	
+          }    
+          
+          	return false;
         		
-        	});
-        });
+      });
+ });
       		
-      		//이메일 중복검사
-  			$('.input_email').on("propertychange change keyup paste input", function(){
+   		//이메일 중복검사
+		$('.input_email').on("propertychange change keyup paste input", function(){
 
-   			/* console.log("keyup 테스트"); */ 	
-   			var user_email = $('.input_email').val();			// .id_input에 입력되는 값
-			var data = {user_email : user_email}				// '컨트롤에 넘길 데이터 이름' : '데이터(.id_input에 입력되는 값)'
-	
-			$.ajax({
-			type : "post",
-			url : "/withdang/login",
-			data : data,
-			 success : function(result){
-				 if(result != 'fail'){
-						$('.user_email_re_1').css("display","inline-block");
-						$('.user_email_re_2').css("display", "none");	
-						emailckCheck = true;
-					} else {
-						$('.user_email_re_2').css("display","inline-block");
-						$('.user_email_re_1').css("display", "none");	
-						emailckCheck = false;
-					} 
+		/* console.log("keyup 테스트"); */ 	
+		var user_email = $('.input_email').val();			// .id_input에 입력되는 값
+		var data = {user_email : user_email}				// '컨트롤에 넘길 데이터 이름' : '데이터(.id_input에 입력되는 값)'
+
+		$.ajax({
+		type : "post",
+		url : "/withdang/login",
+		data : data,
+		 success : function(result){
+			 if(result != 'fail'){
+				$('.user_email_re_1').css("display","inline-block");
+				$('.user_email_re_2').css("display", "none");	
+				emailckCheck = true;
+				} else {
+				$('.user_email_re_2').css("display","inline-block");
+				$('.user_email_re_1').css("display", "none");	
+				emailckCheck = false;
+				} 
 				
 			}// success 종료
-		}); // ajax 종료	
+	}); // ajax 종료	
 
-   	});// function 종료
+ });// function 종료
    	
    	/* 비밀번호 확인 일치 유효성 검사 */
     
@@ -186,6 +204,19 @@
      }        
    	    
    	});    
+ 
+   	
+   	/* $(document).ready(function(){ */
+    /* 로그인 버튼 클릭 메서드 */
+    $(".login_button").click(function(){
+    	
+    	/* 로그인 메서드 서버 요청 */
+        $("#login_form").attr("action", "/withdang/login1");
+        $("#login_form").submit(); 
+        
+    });
+  /*  }); */
+
         
         </script>
         

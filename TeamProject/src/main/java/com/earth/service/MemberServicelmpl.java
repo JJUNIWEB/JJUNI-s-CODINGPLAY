@@ -27,6 +27,11 @@ public class MemberServicelmpl implements MemberService {
 		return membermapper.emailCheck(user_email);
 	}
 
+	@Override
+	public MemberVo memberLogin(MemberVo member) throws Exception {
+		return membermapper.memberLogin(member);
+	}
+
 	
 
 	

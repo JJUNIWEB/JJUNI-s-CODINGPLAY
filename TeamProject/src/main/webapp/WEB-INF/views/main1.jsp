@@ -1,4 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<c:set var="loginout" value="${member==null ? 'Login' : 'Logout' }" />
+<c:set var="loginoutlink" value="${member==null ? '/login' : '/' }" />
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -29,7 +33,7 @@
                 <li><a href="dangcare.jsp">댕댕케어</a></li>
                 <li><a href="dangcomu.jsp">댕댕커뮤</a></li>
                 <li><a href="dangoffice.jsp">댕사무소</a></li>
-                <li><button class="btnLogin"><a href="login">login</a></button></li>
+                <li><button class="btnLogin"><a href="<c:url value='${loginoutlink }' />">${loginout}</a></button></li>
 
             </ul>
             <a href="#" class="navbar__toggleBtn">
