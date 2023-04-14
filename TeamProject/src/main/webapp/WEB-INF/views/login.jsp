@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="resources/css/login1.css" />
-    <!-- <script src="login.js"></script> -->
+    <script src="/resources/js/login.js"></script>
     <title>Login</title>
     <script
 		  src="https://code.jquery.com/jquery-3.4.1.js"
@@ -25,7 +25,7 @@
                 <button class="signinbtn">로그인</button>
             </div>
             <div class="box signup">
-                <h2>Create An Account</h2>
+                <h2>간편 회원 가입</h2>
                 <button class="signupbtn">회원가입</button>
             </div>
         </div>
@@ -34,26 +34,27 @@
                 <form id="login_form" method="post">
                     <h3>로그인</h3>
                     <input type="text" name="user_email" placeholder="Email">
-                    <input type="password" name="user_pw" placeholder="Password">
+                    <input type="password" name="user_pw" placeholder="비밀번호">
                     <c:if test = "${result == 0 }">
-                    	<div class = "login_warn">사용자 ID 또는 비밀번호를 잘못 입력하셨습니다.</div>
+                    	<div class = "login_warn">사용자 이메일 또는 비밀번호를 잘못 입력하셨습니다.</div>
                     </c:if>
-                    	<input type="button" class="login_button" value="Login">
-                    <a href="#">forget password?</a>
+                    	<input type="button" class="login_button" value="로그인">
+                    <a href="#">비밀번호를 잊으셨습니까?</a>
                 </form>
             </div>
             <div class="form signupform">
                 <form id="join_form" method="post">
                     <h3>회원가입</h3>
-                    <input type="text"  class="input_name" name="user_name" placeholder="이름">
+                    <input type="text"  class="input_name" name="user_name" onkeyup="nameCheck" placeholder="이름">
                     <span class="final_name_ck">이름을 입력해 주세요</span>
-                    <input type="email" class="input_email" name="user_email" placeholder="Email">
+                    <input type="email" class="input_email" name="user_email" onkeyup="emailCheck" placeholder="Email">
                     <span class="user_email_re_1">사용 가능한 이메일입니다</span>
 					<span class="user_email_re_2">이메일이 이미 존재합니다</span>
 					<span class="final_email_ck">이메일을 입력해 주세요</span>
-                    <input type="password" class="input_pw"  name="user_pw" placeholder="Password">
+					<sapn class="mail_input_box_warn"></sapn>
+                    <input type="password" class="input_pw"  name="user_pw" onkeyup="pwCheck" placeholder="비밀번호">
                     <span class="final_pw_ck">비밀번호를 입력해 주세요</span>
-                    <input type="password" class="input_pwck" name="user_pw2" placeholder="Confirm Password" ><span id ="confirmMsg"></span>
+                    <input type="password" class="input_pwck" name="user_pw2" onkeyup="pwckCheck" placeholder="비밀번호 재확인" ><span id ="confirmMsg"></span>
                     <span class="final_pwck_ck">비밀번호 확인을 입력해 주세요</span>
                     <span class="pwck_input_re_1">비밀번호가 일치합니다.</span>
                 	<span class="pwck_input_re_2">비밀번호가 일치하지 않습니다.</span>
@@ -62,7 +63,7 @@
             </div>
         </div>
     </div>
-    <div class="return-main"><a href="/withdang/">메인화면으로 돌아가기</a></div>
+    <div class="return-main"><a href="/withdang">메인화면으로 돌아가기</a></div>
     <script>
     	const signin = document.querySelector(".signinbtn");
         const signup = document.querySelector(".signupbtn");
@@ -96,6 +97,7 @@
         var pwck = $('.input_pwck').val();            // 비밀번호 확인 입력란
         var name = $('.input_name').val();            // 이름 입력란
         var pwdCheck = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
+        var warnMsg = $(".mail_input_box_warn");    // 이메일 입력 경고글
                
            /* 이메일 유효성검사 */
            if(email == ""){
@@ -105,8 +107,8 @@
                $('.final_email_ck').css('display', 'none');
                emailCheck = true;
            }
-        		
-          /* 비밀번호 유효성 검사 */
+        
+         
           if(pw == ""){
               $('.final_pw_ck').css('display','block');
               pwCheck = false;
@@ -123,6 +125,7 @@
           	  }
           
           }
+        
           
           
           
@@ -148,9 +151,9 @@
           /* 최종 유효성 검사 */
           if(emailCheck&&emailckCheck&&pwCheck&&pwckCheck&&pwckcorCheck&&nameCheck&&pwdCheck){
    		
-          	$("#join_form").attr("action", "/withdang/main1");
+          	$("#join_form").attr("action", "/withdang/join");
       		$("#join_form").submit();
-          	
+          	alert("회원가입이 완료 되었습니다.")
           }    
           
           	return false;
@@ -167,7 +170,7 @@
 
 		$.ajax({
 		type : "post",
-		url : "/withdang/login",
+		url : "/withdang/emailCheck",
 		data : data,
 		 success : function(result){
 			 if(result != 'fail'){
@@ -211,7 +214,7 @@
     $(".login_button").click(function(){
     	
     	/* 로그인 메서드 서버 요청 */
-        $("#login_form").attr("action", "/withdang/login1");
+        $("#login_form").attr("action", "/withdang/login");
         $("#login_form").submit(); 
         
     });

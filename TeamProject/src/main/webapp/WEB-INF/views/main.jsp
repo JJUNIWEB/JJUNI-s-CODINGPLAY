@@ -1,158 +1,104 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<c:set var="loginout" value="${member==null ? 'Login' : 'Logout' }" />
+<c:set var="loginoutlink" value="${member==null ? '/login' : '/logout' }" />
 <!DOCTYPE html>
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="resources/css/style.css">
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6eb28aa20d7222d5529f51952b8be3c3"></script>
+    <script src="https://kit.fontawesome.com/kit_code.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/cac1ec65f4.js" crossorigin="anonymous"></script>
+    <script src="resources/js/main.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Gaegu&family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+
     <title>위드댕</title>
-    <link rel="stylesheet" href="resources/css/login.css">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:wght@200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.min.js" integrity="sha384-heAjqF+bCxXpCWLa6Zhcp4fu20XoNIA98ecBC1YkdXhszjoejr5y9Q77hIrv8R9i" crossorigin="anonymous"></script>
-	  <script
-		  src="https://code.jquery.com/jquery-3.4.1.js"
-		  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-		  crossorigin="anonymous">
-	</script>  
 </head>
+
 <body>
     <header>
-        <h2 class="logo">With DANG</h2>
-        <div class="navigation">
-            <a href="main.jsp">댕댕여지도</a>
-            <a href="dangguen.jsp" class="danggeun">댕근마켓</a>
-            <a href="care.jsp" class="care">댕댕케어</a>
-            <a href="community.jsp" class="community">댕댕커뮤</a>
-            <a href="dangoffice.jsp" class="dangoffice">댕사무소</a>
-            <button class="btnLogin-popup">Login</button>
-        </div>
-       
-    </header>
-<!--메인페이지를 해보겠읍니다.-->
+        <nav class="navbar">
 
-    <img src="resources/img/Main.png" class="img-map" alt="...">
-    
-<!--로그인 팝업-->
-    <div class="wrapper">
-        <span class="icon-close">
-            <ion-icon name="close"></ion-icon>
-        </span>
-        <div class="form-box login">
-            <h2>로그인</h2>
-            <form action="#" method="post">
-                <div class="input-box">
-                    <span class="icon">
-                        <ion-icon name="mail"></ion-icon>
-                    </span>
-                    <input type="email" required>
-                    <label>Email</label>
-                </div>
-                <div class="input-box">
-                    <span class="icon">
-                        <ion-icon name="lock-closed"></ion-icon>
-                    </span>
-                    <input type="password" required>
-                    <label>Password</label>
-                </div>
-                <div class="remember-forgot">
-                    <label><input type="checkbox">아이디 기억하기</label>
-                    <a href="#">비밀번호 찾기</a>
-                </div>
-                <button type="submit" class="btn"><a href="main.jsp">로그인</a></button>
-                <div class="login-register">
-                    <p>회원이 아니신가요?<a href="#" class="register-link"> 회원가입</a></p>
-                </div>
-            </form>
-        </div>
-        <div class="form-box register">
-            <h2>회원가입</h2>
-            <form id="join_form" method="post">
-                <div class="input-box">
-                    <span class="icon">
-                        <ion-icon name="mail"></ion-icon>
-                    </span>
-                    <input type="email" class="email_input" name="user_email" required id = "user_email">
-                    <label>Email</label>
-               	</div>
-                	<span class="email_input_re_1">사용 가능한 이메일입니다.</span>
-					<span class="emial_input_re_2">이메일이 이미 존재합니다.</span>
+            <div class="navbar__logo">
+                <a href="">with DANG</a>
+            </div>
+
+            <ul class="navbar__menu">
+                <li><a href="/withdang">댕댕여지도</a></li>
+                <li><a href="/withdang/dangguen">댕근마켓</a></li>
+                <li><a href="/withdang/dangcare">댕댕케어</a></li>
+                <li><a href="/withdang/dangcomu">댕댕커뮤</a></li>
+                <li><a href="/withdang/dangoffice">댕사무소</a></li>
+                <c:if test="${ member != null }">
+                	<li><a href="mypage.jsp"><i class="fa fa-user-o" id="mypage" aria-hidden="true"></i></a></li>
+                </c:if>
+                <li><button class="btnLogin"><a href="<c:url value='${loginoutlink }' />">${loginout}</a></button></li>
                 
-                <div class="input-box">
-                    <span class="icon">
-                        <ion-icon name="lock-closed"></ion-icon>
-                    </span>
-                    <input type="password" name="user_pw" required id = "user_pw">
-                    <label>Password</label>
-                </div>
 
-                <div class="input-box">
-                    <span class="icon">
-                        <ion-icon name="person"></ion-icon>
-                    </span>
-                    <input type="text" name="user_name" required id = "user_name">
-                    <label>이름</label>
-                </div>
+            </ul>
+            <a href="#" class="navbar__toggleBtn">
+                <i class="fas fa-bars" aria-hidden="true"></i>
+            </a>
+        </nav>
+    </header>
+    <section id="main">
+        <div class="main-map">
+            <a class="dogicon" style="height: 150px; z-index: 2"><img src="resources/image/dogicon.png" /></a>
+            <br><br>
+            <p class="main-title"> 댕댕여지도</p>
 
-                <div class="input-box">
-                    <span class="icon">
-                        <ion-icon name="phone"></ion-icon>
-                    </span>
-                    <input type="tel" name="user_pnum" required id = "user_pnum">
-                    <label>연락처</label>
+            <div id="map" class="map" style="width: auto; height: 500px;z-index: 1"></div>
+
+
+
+            <div class="main-side">
+                <div class="main-pin">
+                    <a href="#"><img src="resources/image/pin1.png" alt="핀1"></a>
                 </div>
-                <div class="remember-forgot">
-                    <label><input type="checkbox">회원가입 약관에 동의합니다.</label>
+                <div class="main-pin">
+                    <a href="#"><img src="resources/image/pin2.png" alt="핀2"></a>
                 </div>
-                <!-- <button type="submit" class="btn">회원가입</button> -->
-                <input type="button" class="btn" value="회원가입"/>
-                <div class="login-register">
-                    <p>이미 회원이신가요?<a href="#" class="login-link"> Login</a></p>
+                <div class="main-pin">
+                    <a href="#"><img src="resources/image/pin3.png" alt="핀3"></a>
                 </div>
-            </form>
+                <div class="main-pin">
+                    <a href="#"><img src="resources/image/pin4.png" alt="핀4"></a>
+                </div>
+                <div class="main-pin">
+                    <a href="#"><img src="resources/image/pin5.png" alt="핀5"></a>
+                </div>
+                <div class="main-pin">
+                    <a href="#"><img src="resources/image/pin6.png" alt="핀6"></a>
+                </div>
+            </div>
         </div>
-    </div>
 
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script>
-        const wrapper = document.querySelector(".wrapper");
-        const loginLink = document.querySelector(".login-link");
-        const registerLink = document.querySelector(".register-link");
-        const btnPopup = document.querySelector(".btnLogin-popup");
-        const iconClose = document.querySelector(".icon-close");
-        registerLink.addEventListener("click", ()=> {
-            wrapper.classList.add("active");
-        });
-        loginLink.addEventListener("click", ()=> {
-            wrapper.classList.remove("active");
-        });
-        btnPopup.addEventListener("click", ()=> {
-            wrapper.classList.add("active-popup");
-        });
-        iconClose.addEventListener("click", ()=> {
-            wrapper.classList.remove("active-popup");
-        });
-        </script>
-        
-        <script>
+    </section>
+    <br><br>
+    <article class="main-about">
+        <div class="main-btn" width="80%" height="auto">
+            <button type="button" id="main-btn" name="petsitter"><a href="/withdang/dangguen">댕근마켓 바로가기▶</a></button>
+            <button type="button" id="main-btn" name="pet"><a href="/withdang/dangcare">댕댕케어 바로가기▶</a></button>
+        </div>
+        <br>
+    </article>
+    <br><br>
+    <footer class="main-about">
+        <img src="resources/image/about.png" width="90%" height="auto">
+    </footer>
+    <br><br><br><br>
 
-        $(document).ready(function(){
-        	//회원가입 버튼(회원가입 기능 작동)
-        	$(".btn").click(function(){
-        		$("#join_form").attr("action", "/main");
-        		$("#join_form").submit();
-        	});
-        });
-        
-      //아이디 중복검사
-        $('.email_input').on("propertychange change keyup paste input", function(){
 
-        	console.log("keyup 테스트");	
 
-        });// function 종료
 
-        </script>
-        
-    
+
+
 </body>
+
 </html>

@@ -33,7 +33,7 @@ public class MemberController {
 	@RequestMapping(value = "/" , method = RequestMethod.GET)
 	public String mainPageGET() {
 		
-		return "/main1";
+		return "/main";
 		
 	}
 	
@@ -42,14 +42,20 @@ public class MemberController {
 //		logger.info("회원가입 페이지 진입");
 //	}
 	
-	@PostMapping("/main1")
+	@PostMapping("/join")
 	public String joinPOST(MemberVo member) throws Exception {
 		//회원가입 서비스 실행
 		memberservice.memberJoin(member);
 
-		return "redirect:/";
+		return "redirect:/login";
 		
 	}
+	
+	//회원가입 완료 페이지
+//	@GetMapping("/joinHello")
+//	public void joinHelloGET() {
+//		
+//	}
 	
 	@GetMapping(value="/login")
 	public String loginGET() {
@@ -58,7 +64,7 @@ public class MemberController {
 	}
 	
 	// 아이디 중복 검사
-		@RequestMapping(value = "/login", method = RequestMethod.POST)
+		@RequestMapping(value = "/emailCheck", method = RequestMethod.POST)
 		@ResponseBody
 		public String memberEmailCheckPOST(String user_email) throws Exception{
 			
@@ -78,7 +84,7 @@ public class MemberController {
 		} // memberIdChkPOST() 종료	
 		
 		/* 로그인 */
-	    @RequestMapping(value="/login1", method = RequestMethod.POST)
+	    @RequestMapping(value="/login", method = RequestMethod.POST)
 	    public String loginPOST(HttpServletRequest request, MemberVo member, RedirectAttributes rttr) throws Exception{
 	        
 	    	System.out.println("login 메서드 진입");
@@ -96,9 +102,16 @@ public class MemberController {
 	  
 	        session.setAttribute("member", lvo);             // 일치하는 아이디, 비밀번호 경우 (로그인 성공)
 	        
-	        return "main1";
+	        return "redirect:/";
        
 //	      return null;
 	    }
+	    
+	    @GetMapping("/logout")
+	    public String logout(HttpSession session) {
+	    	session.invalidate();
+	    	return "redirect:/";
+	    }
+	    
 	
 }
