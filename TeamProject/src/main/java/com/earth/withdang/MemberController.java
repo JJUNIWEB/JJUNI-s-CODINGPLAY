@@ -46,7 +46,6 @@ public class MemberController {
 	public String joinPOST(MemberVo member) throws Exception {
 		//회원가입 서비스 실행
 		memberservice.memberJoin(member);
-
 		return "redirect:/login";
 		
 	}
@@ -82,6 +81,26 @@ public class MemberController {
 			
 			
 		} // memberIdChkPOST() 종료	
+		
+		// 닉네임 중복 검사
+				@RequestMapping(value = "/nickNameCheck", method = RequestMethod.POST)
+				@ResponseBody
+				public String membernickNameCheckPOST(String user_nickname) throws Exception{
+					
+					int result = memberservice.nickNameCheck(user_nickname);
+					
+					if(result != 0) {
+						
+						return "fail";	// 중복 닉네임 존재
+						
+					} else {
+						
+						return "success";	// 중복 닉네임 x
+						
+					}	
+					
+					
+				} // memberIdChkPOST() 종료	
 		
 		/* 로그인 */
 	    @RequestMapping(value="/login", method = RequestMethod.POST)

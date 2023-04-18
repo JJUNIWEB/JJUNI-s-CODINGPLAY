@@ -10,7 +10,7 @@ body {
   margin: 0;
   background-color: var(--bodybackground-color);
   font-family: 'STIX Two Math';
-  background-image: url(/image/back-deco.png);
+  background-image: /resources/image/back-deco.png;
 
   
 }
@@ -211,14 +211,27 @@ a {
 }
 
 .mypage__select {
-    width: 100%;
+    /* width: 100%; */
     height: 20%;
     border-bottom: 4px solid white;
     padding-left: 150px;
-    font-size: 18px;
-    font-weight: bold;
+    /* font-size: 18px;
+    font-weight: bold; */
     display: flex;
     align-items: center;
+}
+.mypage__select > span {
+    /* width: 100%;
+    height: 20%;
+    border-bottom: 4px solid white; 
+    padding-left: 150px; */
+    font-size: 18px;
+    font-weight: bold;
+    position: absolute;
+    top: 100px;
+    left: 390px;
+    /* display: flex;
+    align-items: center; */
 }
 
 .mypage__detail {

@@ -20,6 +20,7 @@ public class MemberServicelmpl implements MemberService {
 	@Override
 	public void memberJoin(MemberVo member) throws Exception {
 		membermapper.memberJoin(member);
+		
 	}
 
 	@Override
@@ -30,6 +31,11 @@ public class MemberServicelmpl implements MemberService {
 	@Override
 	public MemberVo memberLogin(MemberVo member) throws Exception {
 		return membermapper.memberLogin(member);
+	}
+
+	@Override
+	public int nickNameCheck(String user_nickname) throws Exception {
+		return membermapper.nickNameCheck(user_nickname);
 	}
 
 	

@@ -10,6 +10,9 @@ public interface MemberMapper {
 	// 이메일 중복 검사
 	public int emailCheck(String user_email);
 	
+	// 닉네임 중복 검사
+	public int nickNameCheck(String user_nickname);
+	
 	/* 로그인 */
     public MemberVo memberLogin(MemberVo member);
 

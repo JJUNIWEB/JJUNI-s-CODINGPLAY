@@ -26,7 +26,7 @@
         <nav class="navbar">
 
             <div class="navbar__logo">
-                <a href="">with DANG</a>
+                <a href="/withdang">with DANG</a>
             </div>
 
             <ul class="navbar__menu">
@@ -36,7 +36,7 @@
                 <li><a href="/withdang/dangcomu">댕댕커뮤</a></li>
                 <li><a href="/withdang/dangoffice">댕사무소</a></li>
                 <c:if test="${ member != null }">
-                	<li><a href="mypage.jsp"><i class="fa fa-user-o" id="mypage" aria-hidden="true"></i></a></li>
+                	<li><a href="/withdang/mypage"><i class="fa fa-user-o" id="mypage" aria-hidden="true"></i></a></li>
                 </c:if>
                 <li><button class="btnLogin"><a href="<c:url value='${loginoutlink }' />">${loginout}</a></button></li>
                 

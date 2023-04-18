@@ -3,8 +3,8 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="com.earth.mapper.MemberMapper">
-		<insert id="memberJoin">
-			insert into tb_user values(#{user_name},#{user_email},#{user_pw})
+		<insert id="memberJoin" >
+			insert into tb_user values(#{user_name},#{user_nickname},#{user_email},#{user_pw})
 		</insert>
 		
 		<!-- 아이디 중복검사 -->
@@ -16,8 +16,17 @@
   	
   		</select>
   		
+  		<!-- 닉네임 중복검사 -->
+  		<select id="nickNameCheck" resultType="int">
+  	
+  		select count(*) 
+  		from tb_user 
+  		where user_nickname = #{user_nickname}
+  	
+  		</select>
+  		
   		<select id="memberLogin" resultType="com.earth.model.MemberVo">
-  			select user_email, user_pw, user_name  
+  			select user_email, user_pw, user_nickname, user_name
   			from tb_user 
   			where user_email = #{user_email} and user_pw = #{user_pw}
   		</select>

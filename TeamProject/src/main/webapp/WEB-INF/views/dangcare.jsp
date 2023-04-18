@@ -1,4 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<c:set var="loginout" value="${member==null ? 'Login' : 'Logout' }" />
+<c:set var="loginoutlink" value="${member==null ? '/login' : '/logout' }" />
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -25,17 +29,19 @@
         <nav class="navbar">
 
             <div class="navbar__logo">
-                <a href="">with DANG</a>
+                <a href="/withdang">with DANG</a>
             </div>
 
             <ul class="navbar__menu">
-                <li><a href="main.html">댕댕여지도</a></li>
-                <li><a href="dangguen.html">댕근마켓</a></li>
-                <li><a href="dangcare.html">댕댕케어</a></li>
-                <li><a href="dangcomu.html">댕댕커뮤</a></li>
-                <li><a href="dangoffice.html">댕사무소</a></li>
-                <li><button class="btnLogin"><a href="login.html">login</a></button></li>
-                <li><a href="mypage.html"><i class="fa fa-user-o" id="mypage" aria-hidden="true"></i></a></li>
+                <li><a href="/withdang">댕댕여지도</a></li>
+                <li><a href="/withdang/dangguen">댕근마켓</a></li>
+                <li><a href="/withdang/dangcare">댕댕케어</a></li>
+                <li><a href="/withdang/dangcomu">댕댕커뮤</a></li>
+                <li><a href="/withdang/dangoffice">댕사무소</a></li>
+                <c:if test="${ member != null }">
+                	<li><a href="/withdang/mypage"><i class="fa fa-user-o" id="mypage" aria-hidden="true"></i></a></li>
+                </c:if>
+                <li><button class="btnLogin"><a href="<c:url value='${loginoutlink }' />">${loginout}</a></button></li>
 
             </ul>
             <a href="#" class="navbar__toggleBtn">
@@ -46,17 +52,17 @@
 
     <section class="caremain">
         <p></p>
-        <img src="./image/caremain.png" class="care-img" width="80%" height="auto" />
+        <img src="resources/image/caremain.png" class="care-img" width="80%" height="auto" />
         <p></p>
         <div class="petbtn">
-            <button type="button" id="petbtn" name="petsitter"><a href="petsitter.html">펫시터 지원합니다.</a></button>
-            <button type="button" id="petbtn" name="pet"><a href="petsitter.html">펫시터 구합니다.</a></button>
+            <button type="button" id="petbtn" name="petsitter"><a href="/withdang/petsitter">펫시터 지원합니다.</a></button>
+            <button type="button" id="petbtn" name="pet"><a href="/withdang/petsitter">펫시터 구합니다.</a></button>
         </div>
         <div id="care-text" classW="typewriter-effect">
             <div class="text" id="typewriter-text"></div>
         </div>
         <p></p>
-        <img src="image/process.png" class="care-img" width="80%" height="auto"/>
+        <img src="resources/image/process.png" class="care-img" width="80%" height="auto"/>
 
 
 

@@ -1,4 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<c:set var="loginout" value="${member==null ? 'Login' : 'Logout' }" />
+<c:set var="loginoutlink" value="${member==null ? '/login' : '/logout' }" />
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -31,8 +35,10 @@
                 <li><a href="/withdang/dangcare">댕댕케어</a></li>
                 <li><a href="/withdang/dangcomu">댕댕커뮤</a></li>
                 <li><a href="/withdang/dangoffice">댕사무소</a></li>
-                <li><button class="btnLogin"><a href="/login">login</a></button></li>
-                <li><a href="/withdang/mypage"><i class="fa fa-user-o" id="mypage" aria-hidden="true"></i></a></li>
+                <c:if test="${ member != null }">
+                	<li><a href="/withdang/mypage"><i class="fa fa-user-o" id="mypage" aria-hidden="true"></i></a></li>
+                </c:if>
+                <li><button class="btnLogin"><a href="<c:url value='${loginoutlink }' />">${loginout}</a></button></li>
 
             </ul>
             <a href="#" class="navbar__toggleBtn">
@@ -143,7 +149,7 @@
                         </div>
                         <!-- Product actions-->
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/withdang/buy">구매하기♥</a></div>
+                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/withdang/chat">구매하기♥</a></div>
                         </div>
                     </div>
                 </div>
