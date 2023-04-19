@@ -15,5 +15,11 @@ public interface MemberMapper {
 	
 	/* 로그인 */
     public MemberVo memberLogin(MemberVo member);
+    
+    // 회원정보 수정
+    public void memberUpdate(MemberVo member);
+    
+    //추가정보기입
+    public void addInfo(MemberVo member);
 
 }

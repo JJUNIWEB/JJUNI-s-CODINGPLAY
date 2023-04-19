@@ -49,6 +49,23 @@ public class MemberController {
 		return "redirect:/login";
 		
 	}
+//	@RequestMapping("/addInfo")
+//	public String addInfo(HttpServletRequest request, MemberVo member) throws Exception {
+//		HttpSession session = request.getSession();
+//		session.setAttribute("member", member);
+//		memberservice.addInfo(member);
+//		return "redirect:/mypage";
+//	}
+	//회원정보수정
+	@RequestMapping(value = "/mypage_update", method = RequestMethod.POST)
+	public String memberUpdate(HttpServletRequest request, MemberVo member) throws Exception {
+		HttpSession session = request.getSession();
+		session.setAttribute("member", member);
+		System.out.println("memberUpdate 메서드 진입");
+        System.out.println("전달된 데이터 : " + member);
+		memberservice.memberUpdate(member);
+		return "redirect:/mypage";
+	}
 	
 	//회원가입 완료 페이지
 //	@GetMapping("/joinHello")

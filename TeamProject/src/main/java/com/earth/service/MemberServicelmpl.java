@@ -38,6 +38,18 @@ public class MemberServicelmpl implements MemberService {
 		return membermapper.nickNameCheck(user_nickname);
 	}
 
+	@Override
+	public void memberUpdate(MemberVo member) throws Exception {
+		membermapper.memberUpdate(member);
+		
+	}
+
+	@Override
+	public void addInfo(MemberVo member) throws Exception {
+		membermapper.addInfo(member);
+		
+	}
+
 	
 
 	

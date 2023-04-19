@@ -7,6 +7,10 @@
 			insert into tb_user values(#{user_name},#{user_nickname},#{user_email},#{user_pw})
 		</insert>
 		
+		<!-- <insert id="addInfo">
+			insert into tb_user values('','','','',#{user_pnum})
+		</insert> -->
+		
 		<!-- 아이디 중복검사 -->
   		<select id="emailCheck" resultType="int">
   	
@@ -30,7 +34,14 @@
   			from tb_user 
   			where user_email = #{user_email} and user_pw = #{user_pw}
   		</select>
-		
+  		
+  		<!-- 회원정보 수정 -->
+		<update id="memberUpdate">
+			UPDATE tb_user SET 
+			user_pw = #{user_pw},
+			user_nickname = #{user_nickname}
+			WHERE user_email = #{user_email}
+		</update>
   </mapper>
 
 

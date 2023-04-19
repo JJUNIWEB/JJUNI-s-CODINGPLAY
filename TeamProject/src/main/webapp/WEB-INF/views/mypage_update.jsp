@@ -1,29 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <c:set var="loginout" value="${member==null ? 'Login' : 'Logout' }" />
 <c:set var="loginoutlink" value="${member==null ? '/login' : '/logout' }" />
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="resources/css/mypage.css">
-    <script src="https://kit.fontawesome.com/kit_code.js" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/cac1ec65f4.js" crossorigin="anonymous"></script>
-    <script src="resources/js/main.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
+        integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
+        integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ"
+        crossorigin="anonymous"></script>
 
     <title>마이페이지</title>
+    <script
+		  src="https://code.jquery.com/jquery-3.4.1.js"
+		  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+		  crossorigin="anonymous">
+	</script>  
+    
 </head>
 
 <body>
     <header>
         <nav class="navbar">
-            
+
             <div class="navbar__logo">
                 <a href="/withdang">with DANG</a>
             </div>
@@ -52,15 +59,14 @@
                 <div>
                     <img src="resources/image/profile.png" alt="프로필사진">
                 </div>
-                <br>
-                <span>${member.user_nickname }님 안녕하세요</span>
-                <span><a class="money" href="/withdang/money">댕근 머니 : 50,000</a></span>
+                <p>쫑이님 안녕하세요</p>
+                <a class="money" href="/withdang/money">댕근 머니 : 50,000</a>
                 <br>
                 <hr class="profile-line">
             </div>
             <div class="mypage__list">
                 <ul>
-                    <!-- <li><a href="">내 정보</a></li> -->
+                    <li><a href="/withdang/mypage">내 정보</a></li>
                     <li><a href="">강아지 정보</a></li>
                     <li><a href="/withdang/mypage_chat">채팅</a></li>
                     <li><a href="">판매 목록</a></li>
@@ -68,18 +74,20 @@
                 </ul>
             </div>
         </div>
+        <form id="update_form" method="post">
         <div class="mypage__mid">
             <div class="mypage-user">
                 <ul>
                     <p class="user-info"> 내 정보</p>
-                    <div><span>이름</span> ${member.user_name}</div>
-                    <div><p>이메일 ${member.user_email }</p></div>
-                    <div><p>닉네임 ${member.user_nickname }</p></div>
-                    <div><p>연락처 ${member.user_pnum }</p></div>
-                    <div><p>생일 1999-09-19</p></div>
-                    <div><p>성별 여</p></div>
-                    <div><p>주소 서울시 용산구 한남동</p></div>
-                    <a class="reset-pwd"href="">비밀번호 재설정</a>
+                    <div style="display: none;">이름 :<input name="user_name" value="${member.user_name }"> 위드댕 </div>
+                    <div style="display: none;">이메일 :<input name="user_email" value="${member.user_email }"></div>
+                    <p>비밀번호 변경 : <input type="password" name="user_pw" value="${member.user_pw }"></p>
+                    <p>비밀번호 확인 : <input type="password"></p>
+                    <div><p>닉네임 : <input type="text" name="user_nickname" value="${member.user_nickname }"></p></div>
+                    <div><p>연락처 : <input type="text" name="user_pnum" value="${member.user_pnum }"></p></div>
+                    <div><p>생일 : <input type="date"></p></div>
+                    <div><p>성별 : 여</p></div>
+                    <div><p>주소 : <input></p></div>
                         
                 </ul>
             </div>
@@ -89,15 +97,15 @@
             <div class="mypage-dog">
                 <ul>
                     <p class="dog-info">강아지 정보</p>
-                    <p>이름 : 쫑이</p>
-                    <p>생일 : 2012년 03월 09일</p>
-                    <p>성별 : 수컷</p>
-                    <p>중성화 : O</p>
-                    <p>견종 : 포메라니안</p>
-                    <p>동물등록번호 : 46584564854220</p>
-                    <p>주소 : 서울시 용산구 한남동</p>
-                    <p>특징 : 잘 짖음<br>귀여움
-                    </p>
+                    <p>이름 : <input></p>
+                    <p>생일 : <input type="date"></p>
+                    <p>성별 : <input type="radio">수컷<input type="radio">암컷</p>
+                    <p>중성화 : <input type="radio">O<input type="radio">X</p>
+                    <p>견종 : <input></p>
+                    <p>동물등록번호 : <input> </p>
+                    <p>주소 : <input></p>
+                    <p>특징 : </p><textarea></textarea>
+                    
                 </ul>
             </div>
         </div>
@@ -107,10 +115,23 @@
     <footer>
         <div class="mypage__update">
             <br>
-            <a class="update_btn" href="/withdang/mypage_update">수정하기</a>
-            <a class="addInfo_btn" href="/withdang/addInfo">추가정보기입하기</a>
+            <input type="button" class="update_btn" value="수정하기">
+        </form>
         </div>
+        
     </footer>
     <br><br><br><br>
-    </body>
+    <script type="text/javascript">
+    /* $(document).ready(function(){ */
+    /* 회원 정보 수정 클릭 메서드 */
+    $(".update_btn").click(function(){
+    	
+    	/* 로그인 메서드 서버 요청 */
+        $("#update_form").attr("action", "/withdang/mypage_update");
+        $("#update_form").submit(); 
+        
+    });
+    </script>
+</body>
+
 </html>

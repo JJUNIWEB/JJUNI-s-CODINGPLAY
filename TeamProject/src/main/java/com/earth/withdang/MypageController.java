@@ -10,8 +10,12 @@ public class MypageController {
 	public void mypageGET () {
 		
 	}
-	@GetMapping("/editinfo")
-	public void editInfoGET() {
+	@GetMapping("/mypage_update")
+	public void myPage_UpdateGET() {
+		
+	}
+	@GetMapping("/addInfo")
+	public void addInfoGET() {
 		
 	}
 }
