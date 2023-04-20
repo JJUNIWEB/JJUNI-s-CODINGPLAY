@@ -43,21 +43,4 @@ public class MemberServicelmpl implements MemberService {
 		membermapper.memberUpdate(member);
 		
 	}
-
-	@Override
-	public void addInfo(MemberVo member) throws Exception {
-		membermapper.addInfo(member);
-		
-	}
-
-	
-
-	
-
-	
-
-	
-	
-	
-
 }

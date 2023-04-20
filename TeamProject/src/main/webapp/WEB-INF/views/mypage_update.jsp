@@ -59,7 +59,7 @@
                 <div>
                     <img src="resources/image/profile.png" alt="프로필사진">
                 </div>
-                <p>쫑이님 안녕하세요</p>
+                <p>${member.user_nickname }님 안녕하세요</p>
                 <a class="money" href="/withdang/money">댕근 머니 : 50,000</a>
                 <br>
                 <hr class="profile-line">
@@ -74,15 +74,16 @@
                 </ul>
             </div>
         </div>
-        <form id="update_form" method="post">
+        
         <div class="mypage__mid">
+        	<form id="update_form" method="post">
             <div class="mypage-user">
                 <ul>
                     <p class="user-info"> 내 정보</p>
-                    <div style="display: none;">이름 :<input name="user_name" value="${member.user_name }"> 위드댕 </div>
-                    <div style="display: none;">이메일 :<input name="user_email" value="${member.user_email }"></div>
+                    <div>이름 : <input name="user_name" value="${member.user_name }" readonly="readonly"></div>
+                    <div>이메일 : <input name="user_email" value="${member.user_email }" readonly="readonly"></div>
                     <p>비밀번호 변경 : <input type="password" name="user_pw" value="${member.user_pw }"></p>
-                    <p>비밀번호 확인 : <input type="password"></p>
+                    <p>비밀번호 확인 : <input type="password" name="user_pw2"></p>
                     <div><p>닉네임 : <input type="text" name="user_nickname" value="${member.user_nickname }"></p></div>
                     <div><p>연락처 : <input type="text" name="user_pnum" value="${member.user_pnum }"></p></div>
                     <div><p>생일 : <input type="date"></p></div>
@@ -92,8 +93,10 @@
                 </ul>
             </div>
         </div>
-
+		</form>
+		
         <div class="mypage__right">
+        <form action="">
             <div class="mypage-dog">
                 <ul>
                     <p class="dog-info">강아지 정보</p>
@@ -111,16 +114,16 @@
         </div>
 
         </div>
+        </form>
     </section>
     <footer>
         <div class="mypage__update">
             <br>
             <input type="button" class="update_btn" value="수정하기">
-        </form>
         </div>
-        
     </footer>
-    <br><br><br><br>
+    <!-- <br><br><br><br> -->
+    
     <script type="text/javascript">
     /* $(document).ready(function(){ */
     /* 회원 정보 수정 클릭 메서드 */

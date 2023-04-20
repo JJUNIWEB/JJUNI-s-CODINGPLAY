@@ -14,8 +14,5 @@ public class MypageController {
 	public void myPage_UpdateGET() {
 		
 	}
-	@GetMapping("/addInfo")
-	public void addInfoGET() {
-		
-	}
+	
 }

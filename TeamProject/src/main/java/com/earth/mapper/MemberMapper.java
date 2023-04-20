@@ -19,7 +19,5 @@ public interface MemberMapper {
     // 회원정보 수정
     public void memberUpdate(MemberVo member);
     
-    //추가정보기입
-    public void addInfo(MemberVo member);
 
 }

@@ -108,7 +108,6 @@
         <div class="mypage__update">
             <br>
             <a class="update_btn" href="/withdang/mypage_update">수정하기</a>
-            <a class="addInfo_btn" href="/withdang/addInfo">추가정보기입하기</a>
         </div>
     </footer>
     <br><br><br><br>

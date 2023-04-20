@@ -22,7 +22,4 @@ public interface MemberService {
     /* 회원정보수정 */
     public void memberUpdate(MemberVo member) throws Exception;
     
-    /* 추가정보기입 */
-    public void addInfo(MemberVo member)throws Exception;
-    
 }

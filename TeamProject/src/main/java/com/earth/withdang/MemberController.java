@@ -49,13 +49,7 @@ public class MemberController {
 		return "redirect:/login";
 		
 	}
-//	@RequestMapping("/addInfo")
-//	public String addInfo(HttpServletRequest request, MemberVo member) throws Exception {
-//		HttpSession session = request.getSession();
-//		session.setAttribute("member", member);
-//		memberservice.addInfo(member);
-//		return "redirect:/mypage";
-//	}
+	
 	//회원정보수정
 	@RequestMapping(value = "/mypage_update", method = RequestMethod.POST)
 	public String memberUpdate(HttpServletRequest request, MemberVo member) throws Exception {
