@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.earth.model.DogVo;
 import com.earth.model.MemberVo;
 import com.earth.service.MemberService;
 
@@ -50,14 +51,16 @@ public class MemberController {
 		
 	}
 	
-	//회원정보수정
+	//회원정보수정 및 강아지 정보 수정
 	@RequestMapping(value = "/mypage_update", method = RequestMethod.POST)
-	public String memberUpdate(HttpServletRequest request, MemberVo member) throws Exception {
+	public String memberUpdate(HttpServletRequest request, MemberVo member, DogVo dog) throws Exception {
 		HttpSession session = request.getSession();
 		session.setAttribute("member", member);
+		session.setAttribute("dog", dog);
 		System.out.println("memberUpdate 메서드 진입");
         System.out.println("전달된 데이터 : " + member);
-		memberservice.memberUpdate(member);
+        memberservice.memberUpdate(member);
+        memberservice.dogJoin(dog);
 		return "redirect:/mypage";
 	}
 	

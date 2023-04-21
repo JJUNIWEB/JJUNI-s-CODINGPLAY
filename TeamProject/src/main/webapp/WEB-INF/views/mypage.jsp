@@ -76,9 +76,9 @@
                     <div><p>이메일 ${member.user_email }</p></div>
                     <div><p>닉네임 ${member.user_nickname }</p></div>
                     <div><p>연락처 ${member.user_pnum }</p></div>
-                    <div><p>생일 1999-09-19</p></div>
-                    <div><p>성별 여</p></div>
-                    <div><p>주소 서울시 용산구 한남동</p></div>
+                    <div><p>생일 ${member.user_birth }</p></div>
+                    <div><p>성별 ${member.user_gender }</p></div>
+                    <div><p>주소 ${member.user_address }</p></div>
                     <a class="reset-pwd"href="">비밀번호 재설정</a>
                         
                 </ul>
@@ -89,14 +89,14 @@
             <div class="mypage-dog">
                 <ul>
                     <p class="dog-info">강아지 정보</p>
-                    <p>이름 : 쫑이</p>
-                    <p>생일 : 2012년 03월 09일</p>
-                    <p>성별 : 수컷</p>
-                    <p>중성화 : O</p>
-                    <p>견종 : 포메라니안</p>
-                    <p>동물등록번호 : 46584564854220</p>
-                    <p>주소 : 서울시 용산구 한남동</p>
-                    <p>특징 : 잘 짖음<br>귀여움
+                    <p>이름 : ${dog.dog_name }</p>
+                    <p>생일 : ${dog.dog_birth }</p>
+                    <p>성별 : ${dog.dog_gender }</p>
+                    <p>중성화 : ${dog.dog_nutd }</p>
+                    <p>견종 : ${dog.dog_breed }</p>
+                    <p>동물등록번호 : ${dog.dog_regnum }</p>
+                    <p>주소 : ${dog.dog_address }</p>
+                    <p>특징 : ${dog.dog_feature }
                     </p>
                 </ul>
             </div>

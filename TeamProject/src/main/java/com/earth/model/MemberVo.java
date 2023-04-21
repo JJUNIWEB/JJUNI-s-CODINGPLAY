@@ -13,6 +13,10 @@ public class MemberVo {
 	private String user_pw;
 	private String user_name;
 	private String user_pnum;
+	private String user_birth;
+	private String user_gender;
+	private String user_address;
+	
 	
 	@Override
 	public String toString() {

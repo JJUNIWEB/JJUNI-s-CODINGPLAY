@@ -36,7 +36,7 @@
                     <input type="text" name="user_email" placeholder="Email">
                     <input type="password" name="user_pw" placeholder="비밀번호">
                     <c:if test = "${result == 0 }">
-                    	<div class = "login_warn">사용자 이메일 또는 비밀번호를 잘못 입력하셨습니다.</div>
+                    	<div class = "login_warn">이메일 또는 비밀번호를 잘못 입력하셨습니다.</div>
                     </c:if>
                     	<input type="button" class="login_button" value="로그인">
                     <a href="#">비밀번호를 잊으셨습니까?</a>

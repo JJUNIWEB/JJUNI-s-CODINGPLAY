@@ -1,5 +1,6 @@
 package com.earth.mapper;
 
+import com.earth.model.DogVo;
 import com.earth.model.MemberVo;
 
 
@@ -18,6 +19,9 @@ public interface MemberMapper {
     
     // 회원정보 수정
     public void memberUpdate(MemberVo member);
+    
+    //강아지 정보 추가
+    public void dogJoin(DogVo dog);
     
 
 }

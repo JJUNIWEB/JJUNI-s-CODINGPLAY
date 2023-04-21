@@ -6,6 +6,10 @@
 		<insert id="memberJoin" >
 			insert into tb_user values(#{user_name},#{user_nickname},#{user_email},#{user_pw})
 		</insert>
+		
+		<insert id="dogJoin">
+			insert into tb_dogInfo values(#{dog_name},#{dog_birth},#{dog_gender},#{dog_nutd},#{dog_breed},#{dog_regnum},#{dog_address},#{dog_feature})
+		</insert>
 
 		<!-- 아이디 중복검사 -->
   		<select id="emailCheck" resultType="int">
@@ -26,7 +30,7 @@
   		</select>
   		
   		<select id="memberLogin" resultType="com.earth.model.MemberVo">
-  			select user_email, user_pw, user_nickname, user_name
+  			select user_email, user_pw, user_nickname, user_name, user_pnum, user_birth, user_gender, user_address
   			from tb_user 
   			where user_email = #{user_email} and user_pw = #{user_pw}
   		</select>
@@ -36,7 +40,10 @@
 			UPDATE tb_user SET 
 			user_pw = #{user_pw},
 			user_nickname = #{user_nickname},
-			user_pnum = #{user_pnum}
+			user_pnum = #{user_pnum},
+			user_birth = #{user_birth},
+			user_gender = #{user_gender},
+			user_address = #{user_address}
 			WHERE user_email = #{user_email}
 		</update>
   </mapper>

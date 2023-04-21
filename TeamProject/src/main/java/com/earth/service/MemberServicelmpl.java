@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.earth.mapper.MemberMapper;
+import com.earth.model.DogVo;
 import com.earth.model.MemberVo;
 
 @Service
@@ -41,6 +42,12 @@ public class MemberServicelmpl implements MemberService {
 	@Override
 	public void memberUpdate(MemberVo member) throws Exception {
 		membermapper.memberUpdate(member);
+		
+	}
+
+	@Override
+	public void dogJoin(DogVo dog) throws Exception {
+		membermapper.dogJoin(dog);
 		
 	}
 }

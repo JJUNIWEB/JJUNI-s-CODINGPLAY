@@ -79,16 +79,24 @@
         	<form id="update_form" method="post">
             <div class="mypage-user">
                 <ul>
-                    <p class="user-info"> 내 정보</p>
+                    <div><p class="user-info"> 내 정보</p></div>
                     <div>이름 : <input name="user_name" value="${member.user_name }" readonly="readonly"></div>
                     <div>이메일 : <input name="user_email" value="${member.user_email }" readonly="readonly"></div>
-                    <p>비밀번호 변경 : <input type="password" name="user_pw" value="${member.user_pw }"></p>
-                    <p>비밀번호 확인 : <input type="password" name="user_pw2"></p>
+                    <div><p>비밀번호 변경 : <input type="password" class="input_pw" name="user_pw" value="${member.user_pw }"></p></div>
+                    <div><p>비밀번호 확인 : <input type="password" class="input_pwck" name="user_pw2"></p></div>
+                    <!-- <span class="pwck_input_re_1">비밀번호가 일치합니다.</span> -->
+                	<!-- <span class="pwck_input_re_2">비밀번호가 일치하지 않습니다.</span> -->
                     <div><p>닉네임 : <input type="text" name="user_nickname" value="${member.user_nickname }"></p></div>
                     <div><p>연락처 : <input type="text" name="user_pnum" value="${member.user_pnum }"></p></div>
-                    <div><p>생일 : <input type="date"></p></div>
-                    <div><p>성별 : 여</p></div>
-                    <div><p>주소 : <input></p></div>
+                    <div><p>생일 : <input type="date" name="user_birth" value="${member.user_birth }"></p></div>
+                    <div>성별:
+                     <select class="form-select" name="user_gender">
+                    	<option value="성별" selected disabled hidden>${member.user_gender }</option>
+                    	<option value="남자">남자</option>
+                    	<option value="여자">여자</option>
+                    </select>
+                   	</div>
+                    <div><p>주소 : <input type="text" name="user_address" value="${member.user_address }"></p></div>
                         
                 </ul>
             </div>
@@ -96,18 +104,18 @@
 		</form>
 		
         <div class="mypage__right">
-        <form action="">
+        <form id="dog_Form" method="post">
             <div class="mypage-dog">
                 <ul>
                     <p class="dog-info">강아지 정보</p>
-                    <p>이름 : <input></p>
-                    <p>생일 : <input type="date"></p>
-                    <p>성별 : <input type="radio">수컷<input type="radio">암컷</p>
-                    <p>중성화 : <input type="radio">O<input type="radio">X</p>
-                    <p>견종 : <input></p>
-                    <p>동물등록번호 : <input> </p>
-                    <p>주소 : <input></p>
-                    <p>특징 : </p><textarea></textarea>
+                    <p>이름 : <input type="text" name="dog_name"></p>
+                    <p>생일 : <input type="date" name="dog_birth"></p>
+                    <p>성별 : <input type="radio" name="dog_gender">수컷<input type="radio" name="dog_gender">암컷</p>
+                    <p>중성화 : <input type="radio" name="dog_nutd">O<input type="radio" name="dog_nutd">X</p>
+                    <p>견종 : <input type="text" name="dog_breed"></p>
+                    <p>동물등록번호 : <input type="text" name="dog_regnum"></p>
+                    <p>주소 : <input type="text" name="dog_address"></p>
+                    <p>특징 : <input type="text" name="dog_feature"></p>
                     
                 </ul>
             </div>
@@ -125,15 +133,44 @@
     <!-- <br><br><br><br> -->
     
     <script type="text/javascript">
+    /* var pwckcorCheck = false; */
+    
     /* $(document).ready(function(){ */
     /* 회원 정보 수정 클릭 메서드 */
     $(".update_btn").click(function(){
     	
+    	/* var pw = $('.input_pw').val();                // 비밀번호 입력란
+        var pwck = $('.input_pwck').val();            // 비밀번호 확인 입력란 */
+    	
+        /* if(pw == pwck) { */
     	/* 로그인 메서드 서버 요청 */
-        $("#update_form").attr("action", "/withdang/mypage_update");
-        $("#update_form").submit(); 
+        $({"#update_form"},{"dog_Form"}).attr("action", "/withdang/mypage_update");
+        $({"#update_form"},{"dog_Form"}).submit(); 
+        /* } else {
+        	$('.pwck_input_re_2').css('display','block');
+        } */
+        
         
     });
+ 
+ 
+    /* $('.input_pwck').on("propertychange change keydown paste input", function(){
+	        
+   		var pw = $('.input_pw').val();
+   	    var pwck = $('.input_pwck').val();
+   	    $('.final_pwck_ck').css('display', 'none');
+   	    
+   	 	if(pw == pwck){
+         	$('.pwck_input_re_1').css('display','block');
+         	$('.pwck_input_re_2').css('display','none');
+         	pwckcorCheck = true;
+     	}else{
+        	$('.pwck_input_re_1').css('display','none');
+         	$('.pwck_input_re_2').css('display','block');
+         	pwckcorCheck = false;
+     }         */
+   	      
+    
     </script>
 </body>
 

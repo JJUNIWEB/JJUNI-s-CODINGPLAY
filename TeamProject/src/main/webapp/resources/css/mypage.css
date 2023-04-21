@@ -332,9 +332,32 @@ textarea {
       padding: 10%;
 
     }
-    .mypage__right {
+	.mypage__right {
       position: relative;
       padding: 10%;
 
     }
-  }
+/* 비밀번호 확인 일치 유효성검사 */
+.pwck_input_re_1{
+        color : green;
+        display : none;    
+        position: absolute;
+        font-size: x-small;
+        top: 385px;
+        right: 50px;
+}
+.pwck_input_re_2{
+        color : red;
+        display : none; 
+        position: absolute;
+        font-size: x-small;
+        top: 385px;
+        right: 50px;   
+}
+
+.final_pwck_ck{
+    position: absolute;
+    display: none;
+    font-size: x-small;
+    top: 385px;
+}    

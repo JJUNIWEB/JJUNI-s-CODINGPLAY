@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletResponse;
 
+import com.earth.model.DogVo;
 import com.earth.model.MemberVo;
 
 public interface MemberService {
@@ -21,5 +22,7 @@ public interface MemberService {
     
     /* 회원정보수정 */
     public void memberUpdate(MemberVo member) throws Exception;
+    
+    public void dogJoin(DogVo dog) throws Exception;
     
 }
