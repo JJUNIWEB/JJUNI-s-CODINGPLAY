@@ -47,10 +47,11 @@
                     <h3>회원가입</h3>
                     <input type="text"  class="input_name" name="user_name" placeholder="이름">
                     <span class="final_name_ck">이름을 입력해 주세요</span>
+                    <input type="text"  class="input_nickname" name="user_nickname" placeholder="닉네임">
                     <span class="user_nickname_re_1">사용 가능한 닉네임입니다</span>
                     <span class="user_nickname_re_2">닉네임이 이미 존재합니다</span>
-                    <input type="text"  class="input_nickname" name="user_nickname" placeholder="닉네임">
                     <span class="final_nickname_ck">닉네임을 입력해 주세요</span>
+                    <input type="text"  class="input_dogname" name="dog_name" placeholder="강아지이름">
                     <input type="email" class="input_email" name="user_email" placeholder="Email">
                     <span class="user_email_re_1">사용 가능한 이메일입니다</span>
 					<span class="user_email_re_2">이메일이 이미 존재합니다</span>

@@ -12,5 +12,14 @@ public class DogVo {
 	private String dog_regnum;
 	private String dog_address;
 	private String dog_feature;
+	private String user_email;
+	
+	@Override
+	public String toString() {
+		return "DogVo [dog_name=" + dog_name + ", dog_birth=" + dog_birth + ", dog_gender=" + dog_gender + ", dog_nutd="
+				+ dog_nutd + ", dog_breed=" + dog_breed + ", dog_regnum=" + dog_regnum + ", dog_address=" + dog_address
+				+ ", dog_feature=" + dog_feature + "]";
+	}
+	
 	
 }

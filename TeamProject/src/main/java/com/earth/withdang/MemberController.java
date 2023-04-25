@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,9 +45,11 @@ public class MemberController {
 //	}
 	
 	@PostMapping("/join")
-	public String joinPOST(MemberVo member) throws Exception {
+	public String joinPOST(MemberVo member, DogVo dog) throws Exception {
 		//회원가입 서비스 실행
 		memberservice.memberJoin(member);
+		memberservice.dogInsert(dog);
+		
 		return "redirect:/login";
 		
 	}
@@ -54,13 +57,15 @@ public class MemberController {
 	//회원정보수정 및 강아지 정보 수정
 	@RequestMapping(value = "/mypage_update", method = RequestMethod.POST)
 	public String memberUpdate(HttpServletRequest request, MemberVo member, DogVo dog) throws Exception {
-		HttpSession session = request.getSession();
-		session.setAttribute("member", member);
-		session.setAttribute("dog", dog);
+		
 		System.out.println("memberUpdate 메서드 진입");
-        System.out.println("전달된 데이터 : " + member);
+        System.out.println("전달된 데이터 : " + member + dog);
+       
         memberservice.memberUpdate(member);
-        memberservice.dogJoin(dog);
+        memberservice.dogUpdate(dog);
+        HttpSession session = request.getSession();
+		session.setAttribute("member", member);
+		
 		return "redirect:/mypage";
 	}
 	
@@ -118,7 +123,7 @@ public class MemberController {
 		
 		/* 로그인 */
 	    @RequestMapping(value="/login", method = RequestMethod.POST)
-	    public String loginPOST(HttpServletRequest request, MemberVo member, RedirectAttributes rttr) throws Exception{
+	    public String loginPOST(HttpServletRequest request, MemberVo member, DogVo dog, RedirectAttributes rttr) throws Exception{
 	        
 	    	System.out.println("login 메서드 진입");
 	        System.out.println("전달된 데이터 : " + member);
@@ -134,7 +139,7 @@ public class MemberController {
 	        }
 	  
 	        session.setAttribute("member", lvo);             // 일치하는 아이디, 비밀번호 경우 (로그인 성공)
-	        
+	        session.setAttribute("dog", dog);
 	        return "redirect:/";
        
 //	      return null;

@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -50,4 +51,24 @@ public class MemberServicelmpl implements MemberService {
 		membermapper.dogJoin(dog);
 		
 	}
-}
+
+	@Override
+	public void dogUpdate(DogVo dog) throws Exception {
+		membermapper.dogUpdate(dog);
+		
+	}
+
+	@Override
+	public int dogNameCheck(String dog_name) throws Exception {
+		return membermapper.dogNameCheck(dog_name);
+		 
+	}
+
+	@Override
+	public void dogInsert(DogVo dog) throws Exception {
+		membermapper.dogInsert(dog);
+		
+	}
+
+
+	}
