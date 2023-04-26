@@ -8,12 +8,12 @@
 		</insert>
 		
 		<insert id="dogInsert">
-			insert into tb_dogInfo values(#{user_email},#{dog_name})
+			insert into tb_doginfo values(#{user_email},#{dog_name})
 		</insert>
 		
 		<!-- 강아지 정보 기입 -->
 		<insert id="dogJoin">
-			insert into tb_dogInfo values(#{dog_name},#{dog_birth},#{dog_gender},#{dog_nutd},#{dog_breed},#{dog_regnum},#{dog_address},#{dog_feature})
+			insert into tb_doginfo values(#{dog_name},#{dog_birth},#{dog_gender},#{dog_nutd},#{dog_breed},#{dog_regnum},#{dog_address},#{dog_feature})
 		</insert>
 
 		<!-- 아이디 중복검사 -->
@@ -38,12 +38,12 @@
   		<select id="dogNameCheck" resultType="int">
   	
   		select count(*) 
-  		from dog_Info 
+  		from dog_info 
   		where dog_name = #{dog_name}
   	
   		</select>
   		
-  		<select id="memberLogin" resultType="com.earth.model.MemberVo">
+  		<select id="memberLogin" resultType="com.earth.model.MemberInfoVo">
   			select *
   			from tb_user t
   			join tb_doginfo d
@@ -65,7 +65,7 @@
 		
 		<!-- 강아지 정보 수정 -->
 		<update id="dogUpdate">
-			UPDATE tb_dogInfo SET 
+			UPDATE tb_doginfo SET 
 			dog_name = #{dog_name},
 			dog_birth = #{dog_birth},
 			dog_gender = #{dog_gender},

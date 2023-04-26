@@ -100,39 +100,39 @@
                         
                 </ul>
             </div>
-        	</form>
+        	
         </div>
 		
 		
         <div class="mypage__right">
-        <form id="dog_Form" method="post">
+        	<!-- <form id="dogUpdate_form" method="post"> -->
             <div class="mypage-dog">
                 <ul>
                     <p class="dog-info">강아지 정보</p>
-                    <p>이름 : <input type="text" name="dog_name" value="${dog.dog_name }"></p>
-                    <p>생일 : <input type="date" name="dog_birth" value="${dog.dog_birth }"></p>
+                    <p>이름 : <input type="text" name="dog_name" value="${member.dog_name }"></p>
+                    <p>생일 : <input type="date" name="dog_birth" value="${member.dog_birth }"></p>
                     <p>성별 : 
                     <select class="form-select" name="dog_gender">
-                    	<option value="성별" selected disabled hidden>${dog.dog_gender }</option>
+                    	<option value="성별" selected disabled hidden>${member.dog_gender }</option>
                     	<option value="수컷">수컷</option>
                     	<option value="암컷">암컷</option>
                     </select>
                     </p>
                     <p>중성화 : 
                     <select class="form-select" name="dog_nutd">
-                    	<option value="중성화" selected disabled hidden>${dog.dog_nutd }</option>
+                    	<option value="중성화" selected disabled hidden>${member.dog_nutd }</option>
                     	<option value="O">O</option>
                     	<option value="X">X</option>
                     </select>
                     </p>
-                    <p>견종 : <input type="text" name="dog_breed" value="${dog.dog_breed }"></p>
-                    <p>동물등록번호 : <input type="text" name="dog_regnum" value="${dog.dog_regnum }"></p>
-                    <p>주소 : <input type="text" name="dog_address" value="${dog.dog_address }"></p>
-                    <p>특징 : <input type="text" name="dog_feature" value="${dog.dog_feature }"></p>
+                    <p>견종 : <input type="text" name="dog_breed" value="${member.dog_breed }"></p>
+                    <p>동물등록번호 : <input type="text" name="dog_regnum" value="${member.dog_regnum }"></p>
+                    <p>주소 : <input type="text" name="dog_address" value="${member.dog_address }"></p>
+                    <p>특징 : <input type="text" name="dog_feature" value="${member.dog_feature }"></p>
                     
                 </ul>
             </div>
-        </form>
+        	</form>
         </div>
     </section>
     <footer>
@@ -148,20 +148,17 @@
     
     /* $(document).ready(function(){ */
     /* 회원 정보 수정 클릭 메서드 */
-    $(".update_btn").click(function(){
-    	
-    	/* 업데이트 메서드 서버 요청 */
-        $("#update_form", "#dog_Form").attr("action", "/withdang/mypage_update");
-         $("#dog_Form").attr("action", "/withdang/mypage_update");
-        $("#update_form").submit();
-        $("#dog_Form").submit();
-        
-             
-    });
-   /* }); */
- 
+	    $(".update_btn").click(function(){
+	    	/* 업데이트 메서드 서버 요청 */
+	        $("#update_form").attr("action", "/withdang/mypage_update").submit();
+	    });
+	    
+	 	/* $(".update_btn").click(function(){
+	    
+	   	 $("#dogUpdate_form").attr("action", "/withdang/dog_update");
+	        $("#dogUpdate_form").submit();
+	 	}); */
     
-   	
     </script>
 </body>
 

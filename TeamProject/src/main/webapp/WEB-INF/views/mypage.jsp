@@ -89,14 +89,14 @@
             <div class="mypage-dog">
                 <ul>
                     <p class="dog-info">강아지 정보</p>
-                    <p>이름 : ${dog.dog_name }</p>
-                    <p>생일 : ${dog.dog_birth }</p>
-                    <p>성별 : ${dog.dog_gender }</p>
-                    <p>중성화 : ${dog.dog_nutd }</p>
-                    <p>견종 : ${dog.dog_breed }</p>
-                    <p>동물등록번호 : ${dog.dog_regnum }</p>
-                    <p>주소 : ${dog.dog_address }</p>
-                    <p>특징 : ${dog.dog_feature }
+                    <p>이름 : ${member.dog_name }</p>
+                    <p>생일 : ${member.dog_birth }</p>
+                    <p>성별 : ${member.dog_gender }</p>
+                    <p>중성화 : ${member.dog_nutd }</p>
+                    <p>견종 : ${member.dog_breed }</p>
+                    <p>동물등록번호 : ${member.dog_regnum }</p>
+                    <p>주소 : ${member.dog_address }</p>
+                    <p>특징 : ${member.dog_feature }
                     </p>
                 </ul>
             </div>

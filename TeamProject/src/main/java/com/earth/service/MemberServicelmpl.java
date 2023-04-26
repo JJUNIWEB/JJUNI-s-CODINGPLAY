@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.earth.mapper.MemberMapper;
 import com.earth.model.DogVo;
+import com.earth.model.MemberInfoVo;
 import com.earth.model.MemberVo;
 
 @Service
@@ -20,7 +21,7 @@ public class MemberServicelmpl implements MemberService {
 	MemberMapper membermapper;
 	
 	@Override
-	public void memberJoin(MemberVo member) throws Exception {
+	public void memberJoin(MemberInfoVo member) throws Exception {
 		membermapper.memberJoin(member);
 		
 	}
@@ -31,7 +32,7 @@ public class MemberServicelmpl implements MemberService {
 	}
 
 	@Override
-	public MemberVo memberLogin(MemberVo member) throws Exception {
+	public MemberInfoVo memberLogin(MemberInfoVo member) throws Exception {
 		return membermapper.memberLogin(member);
 	}
 
@@ -41,7 +42,7 @@ public class MemberServicelmpl implements MemberService {
 	}
 
 	@Override
-	public void memberUpdate(MemberVo member) throws Exception {
+	public void memberUpdate(MemberInfoVo member) throws Exception {
 		membermapper.memberUpdate(member);
 		
 	}
@@ -53,8 +54,8 @@ public class MemberServicelmpl implements MemberService {
 	}
 
 	@Override
-	public void dogUpdate(DogVo dog) throws Exception {
-		membermapper.dogUpdate(dog);
+	public void dogUpdate(MemberInfoVo member) throws Exception {
+		membermapper.dogUpdate(member);
 		
 	}
 
@@ -65,8 +66,8 @@ public class MemberServicelmpl implements MemberService {
 	}
 
 	@Override
-	public void dogInsert(DogVo dog) throws Exception {
-		membermapper.dogInsert(dog);
+	public void dogInsert(MemberInfoVo member) throws Exception {
+		membermapper.dogInsert(member);
 		
 	}
 
