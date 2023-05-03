@@ -10,4 +10,14 @@ public class DangcareController {
 	public void dangcareGET() {
 		
 	}
+	
+	@GetMapping("/petsitter")
+	public void petsitterGET() {
+		
+	}
+	
+	@GetMapping("/petsitter-offer")
+	public void petsitterOfferGET() {
+		
+	}
 }

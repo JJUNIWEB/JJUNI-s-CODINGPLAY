@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,9 +20,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.earth.model.DogVo;
-import com.earth.model.MemberInfoVo;
-import com.earth.model.MemberVo;
+import com.earth.domain.DogDto;
+import com.earth.domain.MemberInfoDto;
+import com.earth.domain.MemberDto;
 import com.earth.service.MemberService;
 
 import lombok.extern.log4j.Log4j;
@@ -46,7 +47,7 @@ public class MemberController {
 //	}
 	
 	@PostMapping("/join")
-	public String joinPOST(MemberInfoVo member) throws Exception {
+	public String joinPOST(MemberInfoDto member) throws Exception {
 		//회원가입 서비스 실행
 		memberservice.memberJoin(member);
 		memberservice.dogInsert(member);
@@ -111,12 +112,12 @@ public class MemberController {
 		
 		/* 로그인 */
 	    @RequestMapping(value="/login", method = RequestMethod.POST)
-	    public String loginPOST(HttpServletRequest request, MemberInfoVo member, RedirectAttributes rttr) throws Exception{
+	    public String loginPOST(HttpServletRequest request, MemberInfoDto member, RedirectAttributes rttr, Model m) throws Exception{
 	        
 	    	System.out.println("login 메서드 진입");
 	        System.out.println("전달된 데이터 : " + member);
 	    	HttpSession session = request.getSession();
-	    	MemberInfoVo lvo = memberservice.memberLogin(member);
+	    	MemberInfoDto lvo = memberservice.memberLogin(member);
 	    	
 	    	if(lvo == null) {                                // 일치하지 않는 아이디, 비밀번호 입력 경우
 	            

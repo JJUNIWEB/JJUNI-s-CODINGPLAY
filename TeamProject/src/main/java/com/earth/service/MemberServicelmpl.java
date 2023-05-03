@@ -9,10 +9,10 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.earth.domain.DogDto;
+import com.earth.domain.MemberInfoDto;
 import com.earth.mapper.MemberMapper;
-import com.earth.model.DogVo;
-import com.earth.model.MemberInfoVo;
-import com.earth.model.MemberVo;
+import com.earth.domain.MemberDto;
 
 @Service
 public class MemberServicelmpl implements MemberService {
@@ -21,7 +21,7 @@ public class MemberServicelmpl implements MemberService {
 	MemberMapper membermapper;
 	
 	@Override
-	public void memberJoin(MemberInfoVo member) throws Exception {
+	public void memberJoin(MemberInfoDto member) throws Exception {
 		membermapper.memberJoin(member);
 		
 	}
@@ -32,7 +32,7 @@ public class MemberServicelmpl implements MemberService {
 	}
 
 	@Override
-	public MemberInfoVo memberLogin(MemberInfoVo member) throws Exception {
+	public MemberInfoDto memberLogin(MemberInfoDto member) throws Exception {
 		return membermapper.memberLogin(member);
 	}
 
@@ -42,19 +42,19 @@ public class MemberServicelmpl implements MemberService {
 	}
 
 	@Override
-	public void memberUpdate(MemberInfoVo member) throws Exception {
+	public void memberUpdate(MemberInfoDto member) throws Exception {
 		membermapper.memberUpdate(member);
 		
 	}
 
 	@Override
-	public void dogJoin(DogVo dog) throws Exception {
+	public void dogJoin(DogDto dog) throws Exception {
 		membermapper.dogJoin(dog);
 		
 	}
 
 	@Override
-	public void dogUpdate(MemberInfoVo member) throws Exception {
+	public void dogUpdate(MemberInfoDto member) throws Exception {
 		membermapper.dogUpdate(member);
 		
 	}
@@ -66,7 +66,7 @@ public class MemberServicelmpl implements MemberService {
 	}
 
 	@Override
-	public void dogInsert(MemberInfoVo member) throws Exception {
+	public void dogInsert(MemberInfoDto member) throws Exception {
 		membermapper.dogInsert(member);
 		
 	}

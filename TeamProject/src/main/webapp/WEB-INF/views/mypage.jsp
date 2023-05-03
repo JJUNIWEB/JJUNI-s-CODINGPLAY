@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="loginout" value="${member==null ? 'Login' : 'Logout' }" />
 <c:set var="loginoutlink" value="${member==null ? '/login' : '/logout' }" />
@@ -72,13 +73,15 @@
             <div class="mypage-user">
                 <ul>
                     <p class="user-info"> 내 정보</p>
-                    <div><span>이름</span> ${member.user_name}</div>
-                    <div><p>이메일 ${member.user_email }</p></div>
-                    <div><p>닉네임 ${member.user_nickname }</p></div>
-                    <div><p>연락처 ${member.user_pnum }</p></div>
-                    <div><p>생일 ${member.user_birth }</p></div>
-                    <div><p>성별 ${member.user_gender }</p></div>
-                    <div><p>주소 ${member.user_address }</p></div>
+                    
+	                    <div><span>이름</span> ${member.user_name}</div>
+	                    <div><p>이메일 ${member.user_email }</p></div>
+	                    <div><p>닉네임 ${member.user_nickname }</p></div>
+	                    <div><p>연락처 ${member.user_pnum }</p></div>
+	                    <div><p>생일 ${member.user_birth }</p></div>
+	                    <div><p>성별 ${member.user_gender }</p></div>
+	                    <div><p>주소 ${member.user_address }</p></div>
+	                
                     <a class="reset-pwd"href="">비밀번호 재설정</a>
                         
                 </ul>
@@ -96,9 +99,9 @@
                     <p>견종 : ${member.dog_breed }</p>
                     <p>동물등록번호 : ${member.dog_regnum }</p>
                     <p>주소 : ${member.dog_address }</p>
-                    <p>특징 : ${member.dog_feature }
-                    </p>
+                    <p>특징 : ${member.dog_feature }</p>
                 </ul>
+                
             </div>
         </div>
 

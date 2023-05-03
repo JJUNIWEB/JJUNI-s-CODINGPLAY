@@ -1,9 +1,9 @@
-package com.earth.model;
+package com.earth.domain;
 
 import lombok.Data;
 
 @Data
-public class DogVo {
+public class DogDto {
 	private String dog_name;
 	private String dog_birth;
 	private String dog_gender;

@@ -1,4 +1,4 @@
-package com.earth.model;
+package com.earth.domain;
 
 import lombok.Data;
 import lombok.Getter;
@@ -6,7 +6,7 @@ import lombok.Setter;
 
 
 @Data
-public class MemberVo {
+public class MemberDto {
 	
 	private String user_email;
 	private String user_nickname;

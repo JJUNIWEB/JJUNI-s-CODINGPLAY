@@ -112,7 +112,7 @@
                     <p>이름 : <input type="text" name="dog_name" value="${member.dog_name }"></p>
                     <p>생일 : <input type="date" name="dog_birth" value="${member.dog_birth }"></p>
                     <p>성별 : 
-                    <select class="form-select" name="dog_gender">
+                    <select id="gender-check" class="form-select" name="dog_gender">
                     	<option value="성별" selected disabled hidden>${member.dog_gender }</option>
                     	<option value="수컷">수컷</option>
                     	<option value="암컷">암컷</option>
@@ -145,19 +145,17 @@
     <br><br><br><br>
     
     <script type="text/javascript">
+    /* $("#gender-check").val(dog_gender) */
     
-    /* $(document).ready(function(){ */
-    /* 회원 정보 수정 클릭 메서드 */
+    /* $(document).ready(function(){  */
+    	 
+    	 
+    	 /* 회원 정보 수정 클릭 메서드 */
 	    $(".update_btn").click(function(){
 	    	/* 업데이트 메서드 서버 요청 */
 	        $("#update_form").attr("action", "/withdang/mypage_update").submit();
 	    });
-	    
-	 	/* $(".update_btn").click(function(){
-	    
-	   	 $("#dogUpdate_form").attr("action", "/withdang/dog_update");
-	        $("#dogUpdate_form").submit();
-	 	}); */
+	/*  }); */ 
     
     </script>
 </body>

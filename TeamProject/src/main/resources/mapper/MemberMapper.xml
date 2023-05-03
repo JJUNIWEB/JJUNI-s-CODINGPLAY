@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="com.earth.mapper.MemberMapper">
-		<insert id="memberJoin" >
+		<insert id="memberJoin" parameterType="MemberDto">
 			insert into tb_user values(#{user_name},#{user_nickname},#{user_email},#{user_pw})
 		</insert>
 		
@@ -43,7 +43,7 @@
   	
   		</select>
   		
-  		<select id="memberLogin" resultType="com.earth.model.MemberInfoVo">
+  		<select id="memberLogin" resultType="MemberDto">
   			select *
   			from tb_user t
   			join tb_doginfo d

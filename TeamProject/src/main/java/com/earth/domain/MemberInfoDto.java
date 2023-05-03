@@ -1,9 +1,9 @@
-package com.earth.model;
+package com.earth.domain;
 
 import lombok.Data;
 
 @Data
-public class MemberInfoVo {
+public class MemberInfoDto {
 	private String user_email;
 	private String user_nickname;
 	private String user_pw;
