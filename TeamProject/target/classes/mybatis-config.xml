@@ -5,6 +5,6 @@
 
 <configuration>
 	<typeAliases>
-		<typeAlias type="com.earth.domain.MemberInfoDto" alias="MemberDto"/>
+		<!-- <typeAlias type="com.earth.domain.MemberInfoDto" alias="MemberDto"/> -->
 	</typeAliases>
 </configuration>  

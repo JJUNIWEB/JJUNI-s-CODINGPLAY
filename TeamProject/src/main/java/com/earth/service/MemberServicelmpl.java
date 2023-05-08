@@ -42,30 +42,6 @@ public class MemberServicelmpl implements MemberService {
 	}
 
 	@Override
-	public void memberUpdate(MemberInfoDto member) throws Exception {
-		membermapper.memberUpdate(member);
-		
-	}
-
-	@Override
-	public void dogJoin(DogDto dog) throws Exception {
-		membermapper.dogJoin(dog);
-		
-	}
-
-	@Override
-	public void dogUpdate(MemberInfoDto member) throws Exception {
-		membermapper.dogUpdate(member);
-		
-	}
-
-	@Override
-	public int dogNameCheck(String dog_name) throws Exception {
-		return membermapper.dogNameCheck(dog_name);
-		 
-	}
-
-	@Override
 	public void dogInsert(MemberInfoDto member) throws Exception {
 		membermapper.dogInsert(member);
 		

@@ -14,32 +14,37 @@ import com.earth.domain.DogDto;
 import com.earth.domain.MemberInfoDto;
 import com.earth.domain.MemberDto;
 import com.earth.service.MemberService;
+import com.earth.service.MypageService;
 
+import lombok.extern.log4j.Log4j;
+
+@Log4j
 @Controller
 public class MypageController {
 	
 	@Autowired
-	private MemberService memberservice;
+	private MypageService myService;
 	
 	@GetMapping("/mypage")
 	public void mypageGET (MemberInfoDto member, Model m) {
 		MemberInfoDto lvo = new MemberInfoDto();
 		m.addAttribute("lvo", lvo);
 	}
+	
 	@GetMapping("/mypage_update")
 	public void myPage_UpdateGET() {
 		
 	}
 	
-	//회원정보수정
+		//회원정보수정
 		@RequestMapping(value = "/mypage_update", method = RequestMethod.POST)
 		public String memberUpdate(HttpServletRequest request, MemberInfoDto member, Model m) throws Exception {
 			
 			System.out.println("memberUpdate 메서드 진입");
 	        System.out.println("전달된 데이터 : " + member);
 	       
-	        memberservice.memberUpdate(member);
-	        memberservice.dogUpdate(member);
+	        myService.memberUpdate(member);
+	        myService.dogUpdate(member);
 	        
 	        HttpSession session = request.getSession();
 			session.setAttribute("member", member);

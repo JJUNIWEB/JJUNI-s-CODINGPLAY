@@ -2,6 +2,7 @@ package com.earth.withdang;
 
 import java.io.IOException;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -29,7 +30,7 @@ import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
-public class MemberController {
+public class LoginController {
 	
 	@Autowired
 	private MemberService memberservice;
@@ -112,12 +113,26 @@ public class MemberController {
 		
 		/* 로그인 */
 	    @RequestMapping(value="/login", method = RequestMethod.POST)
-	    public String loginPOST(HttpServletRequest request, MemberInfoDto member, RedirectAttributes rttr, Model m) throws Exception{
+	    public String loginPOST(String user_email, HttpServletRequest request, HttpServletResponse response, boolean rememberEmail ,MemberInfoDto member, RedirectAttributes rttr, Model m) throws Exception{
 	        
 	    	System.out.println("login 메서드 진입");
 	        System.out.println("전달된 데이터 : " + member);
-	    	HttpSession session = request.getSession();
+	    	
 	    	MemberInfoDto lvo = memberservice.memberLogin(member);
+	    	
+	    	if (rememberEmail) {
+				//2-2-1. 쿠키를 생성
+				//2-2-2. 응답헤더에 저장 			
+				Cookie cookie = new Cookie("email", user_email);
+				response.addCookie(cookie);
+			}
+			else {
+				//2-3-1. 쿠키를 삭제
+				//2-3-2. 응답헤더에 저장 	
+				Cookie cookie = new Cookie("email", user_email);
+				cookie.setMaxAge(0);
+				response.addCookie(cookie);
+			}
 	    	
 	    	if(lvo == null) {                                // 일치하지 않는 아이디, 비밀번호 입력 경우
 	            
@@ -126,8 +141,9 @@ public class MemberController {
 	            return "redirect:/login";
 	            
 	        }
-	  
-	        session.setAttribute("member", lvo);             // 일치하는 아이디, 비밀번호 경우 (로그인 성공)
+	    	HttpSession session = request.getSession();
+	        m.addAttribute("mem", member);
+	    	session.setAttribute("member", lvo);             // 일치하는 아이디, 비밀번호 경우 (로그인 성공)
 	        return "redirect:/";
        
 //	      return null;

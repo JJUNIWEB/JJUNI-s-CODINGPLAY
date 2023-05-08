@@ -8,9 +8,11 @@ import com.earth.domain.MemberDto;
 
 
 public interface MemberMapper {
-
+	
+	//회원가입
 	public void memberJoin(MemberInfoDto member);
 	
+	//강아지 정보 기입
 	public void dogInsert(MemberInfoDto member);
 	
 	// 이메일 중복 검사
@@ -21,18 +23,5 @@ public interface MemberMapper {
 	
 	/* 로그인 */
     public MemberInfoDto memberLogin(MemberInfoDto member);
-    
-    // 회원정보 수정
-    public void memberUpdate(MemberInfoDto member);
-    
-    //강아지 정보 추가
-    public void dogJoin(DogDto dog);
-    
-    //강아지 정보 수정
-    public void dogUpdate(MemberInfoDto member);
-    
-    //강아지 이름 체크
-    public int dogNameCheck(String dog_name);
-    
-
+   
 }

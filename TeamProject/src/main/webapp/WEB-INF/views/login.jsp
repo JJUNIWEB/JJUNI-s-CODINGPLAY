@@ -33,12 +33,16 @@
             <div class="form signinform">
                 <form id="login_form" method="post">
                     <h3>로그인</h3>
-                    <input type="text" name="user_email" placeholder="Email">
+                    <input type="text" name="user_email" placeholder="Email" value="${cookie.email.value }" autofocus>
                     <input type="password" name="user_pw" placeholder="비밀번호">
                     <c:if test = "${result == 0 }">
                     	<div class = "login_warn">이메일 또는 비밀번호를 잘못 입력하셨습니다.</div>
                     </c:if>
+                    <div>
+                    	<label><input type="checkbox" name="rememberEmail" value="on" ${empty cookie.email.value ? "" : "checked"} />이메일 기억</label>
                     	<input type="button" class="login_button" value="로그인">
+                    	<!-- <button type="button" class="login_button" value="로그인"></button> -->
+                    </div>
                     <a href="#">비밀번호를 잊으셨습니까?</a>
                 </form>
             </div>

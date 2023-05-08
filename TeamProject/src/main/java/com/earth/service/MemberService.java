@@ -12,8 +12,10 @@ import com.earth.domain.MemberDto;
 
 public interface MemberService {
 
+	//회원가입
 	public void memberJoin(MemberInfoDto member) throws Exception;
 	
+	//강아지 정보 기입
 	public void dogInsert(MemberInfoDto member) throws Exception;
 	
 	// 이메일 중복 검사
@@ -24,14 +26,5 @@ public interface MemberService {
 	
 	/* 로그인 */
     public MemberInfoDto memberLogin(MemberInfoDto member) throws Exception;
-    
-    /* 회원정보수정 */
-    public void memberUpdate(MemberInfoDto member) throws Exception;
-    
-    public void dogJoin(DogDto dog) throws Exception;
-    
-    public void dogUpdate(MemberInfoDto member) throws Exception;
-    
-    public int dogNameCheck(String dog_name) throws Exception;
-    
+           
 }
