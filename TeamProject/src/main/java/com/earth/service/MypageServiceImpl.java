@@ -15,6 +15,7 @@ public class MypageServiceImpl implements MypageService {
 	@Override
 	public void memberUpdate(MemberInfoDto member) throws Exception {
 		myMapper.memberUpdate(member);
+		myMapper.dogUpdate(member);
 		
 	}
 
