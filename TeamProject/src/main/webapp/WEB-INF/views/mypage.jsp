@@ -78,11 +78,11 @@
 	                    <div><p>이메일 ${member.user_email }</p></div>
 	                    <div><p>닉네임 ${member.user_nickname }</p></div>
 	                    <div><p>연락처 ${member.user_pnum }</p></div>
-	                    <div><p>생일 ${member.user_birth }</p></div>
+	                    <div><p>생일 <fmt:formatDate value="${member.user_birth }" pattern="yyyy-MM-dd" type="date"/></p></div>
 	                    <div><p>성별 ${member.user_gender }</p></div>
 	                    <div><p>주소 ${member.user_address }</p></div>
 	                
-                    <a class="reset-pwd"href="">비밀번호 재설정</a>
+                    <a class="reset-pwd" href="">비밀번호 재설정</a>
                         
                 </ul>
             </div>
@@ -92,14 +92,14 @@
             <div class="mypage-dog">
                 <ul>
                     <p class="dog-info">강아지 정보</p>
-                    <p>이름 : ${member.dog_name }</p>
-                    <p>생일 : ${member.dog_birth }</p>
-                    <p>성별 : ${member.dog_gender }</p>
-                    <p>중성화 : ${member.dog_nutd }</p>
-                    <p>견종 : ${member.dog_breed }</p>
-                    <p>동물등록번호 : ${member.dog_regnum }</p>
-                    <p>주소 : ${member.dog_address }</p>
-                    <p>특징 : ${member.dog_feature }</p>
+                    <p>이름 : ${dvo.dog_name }</p>
+                    <p>생일 : <fmt:formatDate value="${dvo.dog_birth }" pattern="yyyy-MM-dd" type="date"/> </p>
+                    <p>성별 : ${dvo.dog_gender }</p>
+                    <p>중성화 : ${dvo.dog_nutd }</p>
+                    <p>견종 : ${dvo.dog_breed }</p>
+                    <p>동물등록번호 : ${dvo.dog_regnum }</p>
+                    <p>주소 : ${dvo.dog_address }</p>
+                    <p>특징 : ${dvo.dog_feature }</p>
                 </ul>
                 
             </div>

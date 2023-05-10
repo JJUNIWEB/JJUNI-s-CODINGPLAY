@@ -10,7 +10,7 @@
 			user_pw = #{user_pw},
 			user_nickname = #{user_nickname},
 			user_pnum = #{user_pnum},
-			user_birth = #{user_birth},
+			user_birth = to_date(#{user_birth}, 'YYYY-MM-DD HH24:MI:SS'),
 			user_gender = #{user_gender},
 			user_address = #{user_address}
 			WHERE user_email = #{user_email}
@@ -18,16 +18,16 @@
 		
 		<!-- 강아지 정보 수정 -->
 		<update id="dogUpdate">
-			UPDATE tb_doginfo SET 
+			UPDATE tb_doginfo a SET 
 			dog_name = #{dog_name},
-			dog_birth = #{dog_birth},
+			dog_birth = to_date(#{dog_birth}, 'YYYY-MM-DD HH24:MI:SS'),
 			dog_gender = #{dog_gender},
 			dog_nutd = #{dog_nutd},
 			dog_breed = #{dog_breed},
 			dog_regnum = #{dog_regnum},
 			dog_address = #{dog_address},
 			dog_feature = #{dog_feature}
-			WHERE user_email = #{user_email}
+			WHERE a.user_email = #{user_email}
 		</update>
 		
   </mapper>

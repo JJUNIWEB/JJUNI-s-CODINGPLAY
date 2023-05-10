@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="loginout" value="${member==null ? 'Login' : 'Logout' }" />
 <c:set var="loginoutlink" value="${member==null ? '/login' : '/logout' }" />
@@ -88,7 +89,7 @@
                 	<!-- <span class="pwck_input_re_2">비밀번호가 일치하지 않습니다.</span> -->
                     <div><p>닉네임 : <input type="text" name="user_nickname" value="${member.user_nickname }"></p></div>
                     <div><p>연락처 : <input type="text" name="user_pnum" value="${member.user_pnum }"></p></div>
-                    <div><p>생일 : <input type="date" name="user_birth" value="${member.user_birth }"></p></div>
+                    <div><p>생일 :  <input type="date" name="user_birth" value="${member.user_birth }" pattern="yyyy-MM-dd"></p></div> 
                     <div>성별:
                      <select class="form-select" name="user_gender">
                     	<option value="성별" selected disabled hidden>${member.user_gender }</option>
@@ -109,26 +110,26 @@
             <div class="mypage-dog">
                 <ul>
                     <p class="dog-info">강아지 정보</p>
-                    <p>이름 : <input type="text" name="dog_name" value="${member.dog_name }"></p>
-                    <p>생일 : <input type="date" name="dog_birth" value="${member.dog_birth }"></p>
+                    <p>이름 : <input type="text" name="dog_name" value="${dvo.dog_name }"></p>
+                    <p>생일 : <input type="date" name="dog_birth" value="${dvo.dog_birth }"></p>
                     <p>성별 : 
                     <select id="gender-check" class="form-select" name="dog_gender">
-                    	<option value="성별" selected disabled hidden>${member.dog_gender }</option>
+                    	<option value="성별" selected disabled hidden>${dvo.dog_gender }</option>
                     	<option value="수컷">수컷</option>
                     	<option value="암컷">암컷</option>
                     </select>
                     </p>
                     <p>중성화 : 
                     <select class="form-select" name="dog_nutd">
-                    	<option value="중성화" selected disabled hidden>${member.dog_nutd }</option>
+                    	<option value="중성화" selected disabled hidden>${dvo.dog_nutd }</option>
                     	<option value="O">O</option>
                     	<option value="X">X</option>
                     </select>
                     </p>
-                    <p>견종 : <input type="text" name="dog_breed" value="${member.dog_breed }"></p>
-                    <p>동물등록번호 : <input type="text" name="dog_regnum" value="${member.dog_regnum }"></p>
-                    <p>주소 : <input type="text" name="dog_address" value="${member.dog_address }"></p>
-                    <p>특징 : <input type="text" name="dog_feature" value="${member.dog_feature }"></p>
+                    <p>견종 : <input type="text" name="dog_breed" value="${dvo.dog_breed }"></p>
+                    <p>동물등록번호 : <input type="text" name="dog_regnum" value="${dvo.dog_regnum }"></p>
+                    <p>주소 : <input type="text" name="dog_address" value="${dvo.dog_address }"></p>
+                    <p>특징 : <input type="text" name="dog_feature" value="${dvo.dog_feature }"></p>
                     
                 </ul>
             </div>

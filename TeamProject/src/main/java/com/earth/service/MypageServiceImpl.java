@@ -3,6 +3,8 @@ package com.earth.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.earth.domain.DogDto;
+import com.earth.domain.MemberDto;
 import com.earth.domain.MemberInfoDto;
 import com.earth.mapper.MypageMapper;
 
@@ -13,15 +15,14 @@ public class MypageServiceImpl implements MypageService {
 	MypageMapper myMapper;
 	
 	@Override
-	public void memberUpdate(MemberInfoDto member) throws Exception {
+	public void memberUpdate(MemberDto member) throws Exception {
 		myMapper.memberUpdate(member);
-		myMapper.dogUpdate(member);
 		
 	}
 
 	@Override
-	public void dogUpdate(MemberInfoDto member) throws Exception {
-		myMapper.dogUpdate(member);
+	public void dogUpdate(DogDto dog) throws Exception {
+		myMapper.dogUpdate(dog);
 		
 	}
 
