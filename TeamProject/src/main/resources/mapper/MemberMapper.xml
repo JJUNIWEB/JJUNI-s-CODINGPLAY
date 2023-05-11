@@ -47,6 +47,12 @@
   			where user_email = #{user_email}
   		</select>
   		
+  		<select id="memberCheck" resultType="MemberDto">
+  			select user_pnum
+  			from tb_user
+  			where user_email = #{user_email}
+  		</select>
+  		
   </mapper>
 
 

@@ -1,6 +1,7 @@
 package com.earth.withdang;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -35,9 +36,8 @@ public class LoginController {
 	@Autowired
 	private MemberService memberservice;
 	
-	@RequestMapping(value = "/" , method = RequestMethod.GET)
+	@GetMapping(value = "/")
 	public String mainPageGET() {
-		
 		return "/main";
 		
 	}
@@ -48,101 +48,70 @@ public class LoginController {
 		return "/login";
 	}
 	
-	//회원가입 서비스 실행
-	@PostMapping("/join")
-	public String joinPOST(MemberDto member) throws Exception {
-		memberservice.memberJoin(member);
-		memberservice.dogInsert(member);
-		
-		return "redirect:/login";
-		
-	}
-
-	// 아이디 중복 검사
-	@RequestMapping(value = "/emailCheck", method = RequestMethod.POST)
-	@ResponseBody
-	public String memberEmailCheckPOST(String user_email) throws Exception{
-		
-		int result = memberservice.emailCheck(user_email);
-		
-		if(result != 0) {
-			
-			return "fail";	// 중복 아이디가 존재
-			
-		} else {
-			
-			return "success";	// 중복 아이디 x
-			
-		}	
-		
-		
-	} // memberIdChkPOST() 종료	
+	/* 로그인 */
+    @RequestMapping(value="/login", method = RequestMethod.POST)
+    public String loginPOST(String user_email,HttpServletRequest request, 
+    		HttpServletResponse response, boolean rememberEmail ,MemberDto member, 
+    		DogDto dog, RedirectAttributes rttr, Model m) throws Exception{
+        
+	System.out.println("login 메서드 진입");
+    System.out.println("전달된 데이터 : " + member);
 	
-			// 닉네임 중복 검사
-			@RequestMapping(value = "/nickNameCheck", method = RequestMethod.POST)
-			@ResponseBody
-			public String membernickNameCheckPOST(String user_nickname) throws Exception{
-				
-				int result = memberservice.nickNameCheck(user_nickname);
-				
-				if(result != 0) {
-					
-					return "fail";	// 중복 닉네임 존재
-					
-				} else {
-					
-					return "success";	// 중복 닉네임 x
-					
-				}	
-				
-				
-			} // memberIdChkPOST() 종료	
+	MemberDto lvo = memberservice.memberLogin(member);
+	DogDto dvo = memberservice.dogSelect(dog);
+	//DogDto dog = new DogDto();
 	
-		/* 로그인 */
-	    @RequestMapping(value="/login", method = RequestMethod.POST)
-	    public String loginPOST(String user_email, HttpServletRequest request, HttpServletResponse response, boolean rememberEmail ,MemberDto member, DogDto dog, RedirectAttributes rttr) throws Exception{
-	        
-    	System.out.println("login 메서드 진입");
-        System.out.println("전달된 데이터 : " + member);
-    	
-    	MemberDto lvo = memberservice.memberLogin(member);
-    	DogDto dvo = memberservice.dogSelect(dog);
-    	//DogDto dog = new DogDto();
-    	
-    	if (rememberEmail) {
+		if (rememberEmail) {
 			//2-2-1. 쿠키를 생성
 			//2-2-2. 응답헤더에 저장 			
 			Cookie cookie = new Cookie("email", user_email);
 			response.addCookie(cookie);
 		}
-		else {
+
 			//2-3-1. 쿠키를 삭제
 			//2-3-2. 응답헤더에 저장 	
 			Cookie cookie = new Cookie("email", user_email);
 			cookie.setMaxAge(0);
 			response.addCookie(cookie);
-		}
-    	
-    	if(lvo == null) {                                // 일치하지 않는 아이디, 비밀번호 입력 경우
-            
-            int result = 0;
-            rttr.addFlashAttribute("result", result);
-            return "redirect:/login";
-            
-        }
-    	HttpSession session = request.getSession();
-        //m.addAttribute("dog", dog);
-    	session.setAttribute("member", lvo);             // 일치하는 아이디, 비밀번호 경우 (로그인 성공)
-    	session.setAttribute("dvo", dvo);
-        return "redirect:/";
-   
-    	}
-    
-	    @GetMapping("/logout")
-	    public String logout(HttpSession session) {
-	    	session.invalidate();
-	    	return "redirect:/";
+
+	
+		if(lvo == null) {                                // 일치하지 않는 아이디, 비밀번호 입력 경우
+        
+	        int result = 0;
+	        rttr.addFlashAttribute("result", result);
+	        return "redirect:/login";
+	        
 	    }
-	    
+	
+		if(!memberCheck(member)) {
+			rttr.addFlashAttribute("msg", "memberCheck");
+
+			HttpSession session = request.getSession();
+			session.setAttribute("member", lvo);             // 일치하는 아이디, 비밀번호 경우 (로그인 성공)
+			session.setAttribute("dvo", dvo);
+			
+			return "redirect:/";
+			}
+	
+			HttpSession session = request.getSession();
+			session.setAttribute("member", lvo);             // 일치하는 아이디, 비밀번호 경우 (로그인 성공)
+			session.setAttribute("dvo", dvo);
+		    return "redirect:/";
+		
+    }
+    
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+    	session.invalidate();
+    	return "redirect:/";
+    }
+    
+    private boolean memberCheck(MemberDto member) throws Exception {
+    	MemberDto pnum = memberservice.memberCheck(member);
+    	System.out.println("member ="+pnum);
+    	if(pnum == null) return false;
+    	return true;
+    }
+    
 	
 }

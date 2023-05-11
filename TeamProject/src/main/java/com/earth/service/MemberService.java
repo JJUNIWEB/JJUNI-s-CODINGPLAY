@@ -29,5 +29,7 @@ public interface MemberService {
     
     //도그정보가져오기
     public DogDto dogSelect(DogDto dog) throws Exception;
-           
+    
+    //신규회원확인하기
+    public MemberDto memberCheck(MemberDto member) throws Exception;
 }

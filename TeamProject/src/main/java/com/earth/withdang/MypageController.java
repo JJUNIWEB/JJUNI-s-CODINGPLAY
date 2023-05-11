@@ -26,10 +26,10 @@ public class MypageController {
 	private MypageService myService;
 	
 	@GetMapping("/mypage")
-	public void mypageGET (HttpServletRequest request, MemberDto member, DogDto dog) {
-		HttpSession session = request.getSession();
-		session.getAttribute("member");
-		session.getAttribute("dvo");
+	public void mypageGET () {
+//		HttpSession session = request.getSession();
+//		session.getAttribute("member");
+//		session.getAttribute("dvo");
 	}
 	
 	@GetMapping("/mypage_update")

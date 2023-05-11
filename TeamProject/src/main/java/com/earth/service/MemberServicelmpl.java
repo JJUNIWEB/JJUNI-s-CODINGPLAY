@@ -52,5 +52,11 @@ public class MemberServicelmpl implements MemberService {
 		return membermapper.dogSelect(dog);
 	}
 
+	@Override
+	public MemberDto memberCheck(MemberDto member) throws Exception {
+		
+		return membermapper.memberCheck(member);
+	}
+
 
 	}

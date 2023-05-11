@@ -141,12 +141,45 @@ a {
     margin-bottom: 20px;
 }
 
+#pwdck {
+    border: 1px solid #999;
+    padding: 10px;
+    margin-bottom: 10px;
+    outline: none;   
+}
+
+#pwd {
+	border: 1px solid #999;
+    padding: 10px;
+    margin-bottom: 10px;
+    outline: none;   
+}
+
+#register-policy {
+	font-size: 10px;
+}
+
+#register-check {
+    border: 1px solid #999;
+    padding: 1px;
+    margin-bottom: 10px;
+    outline: none;
+}
+
+#chk {
+	margin-bottom: 10px;
+}
+
 .form form input[type="button"] {
     max-width: 100px;
     background: #ed8b9e;
     color: #fff;
     border: none;
     cursor: pointer;
+}
+
+#label {
+    font-size: 10px;
 }
 
 .form form input[value="Sign Up"] {

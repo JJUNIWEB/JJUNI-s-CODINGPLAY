@@ -26,5 +26,8 @@ public interface MemberMapper {
     
     //도그정보가져오기
     public DogDto dogSelect(DogDto dog);
+    
+    //신규회원확인하기
+    public MemberDto memberCheck(MemberDto member);
    
 }

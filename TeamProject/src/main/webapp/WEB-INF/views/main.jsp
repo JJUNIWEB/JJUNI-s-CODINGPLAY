@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page session="true" %>
 
 <c:set var="loginout" value="${member==null ? 'Login' : 'Logout' }" />
 <c:set var="loginoutlink" value="${member==null ? '/login' : '/logout' }" />
@@ -94,7 +95,11 @@
     </footer>
     <br><br><br><br>
 
-
+	<script type="text/javascript">
+		let msg = "${msg}"
+		if(msg=="memberCheck") alert("신규 회원님 환영 합니다. 마이페이지에서 필수 회원 정보를 입력해주세요")
+		/* location.href='<c:out value="${pageContext.request.contextPath}"/>${url}'; */
+	</script>
 
 
 
