@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.earth.domain.DogDto;
-import com.earth.domain.MemberInfoDto;
 import com.earth.mapper.MemberMapper;
 import com.earth.domain.MemberDto;
 

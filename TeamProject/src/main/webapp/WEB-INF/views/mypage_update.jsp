@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 
 <c:set var="loginout" value="${member==null ? 'Login' : 'Logout' }" />
 <c:set var="loginoutlink" value="${member==null ? '/login' : '/logout' }" />
@@ -11,6 +12,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="resources/css/mypage.css">
+    <script src="${path}/resources/script/toggle.js" defer></script>
+    
     <script src="https://kit.fontawesome.com/cac1ec65f4.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
         integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE"
@@ -18,69 +21,68 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
         integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ"
         crossorigin="anonymous"></script>
-
-    <title>마이페이지</title>
+        
     <script
-		  src="https://code.jquery.com/jquery-3.4.1.js"
-		  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-		  crossorigin="anonymous">
-	</script>  
-    
+		 src="https://code.jquery.com/jquery-3.4.1.js"
+		 integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+		 crossorigin="anonymous"></script>
+		 
+	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>	 
+	
+    <title>마이페이지</title>
 </head>
 
 <body>
-    <header>
-        <nav class="navbar">
+<header>
+    <nav class="navbar">
 
-            <div class="navbar__logo">
-                <a href="/withdang">with DANG</a>
-            </div>
+        <div class="navbar__logo">
+            <a href="${pageContext.request.contextPath}/main">with DANG</a>
+        </div>
 
-            <ul class="navbar__menu">
-                <li><a href="/withdang">댕댕여지도</a></li>
-                <li><a href="/withdang/dangguen">댕근마켓</a></li>
-                <li><a href="/withdang/dangcare">댕댕케어</a></li>
-                <li><a href="/withdang/dangcomu">댕댕커뮤</a></li>
-                <li><a href="/withdang/dangoffice">댕사무소</a></li>
-                <c:if test="${ member != null }">
-                	<li><a href="/withdang/mypage"><i class="fa fa-user-o" id="mypage" aria-hidden="true"></i></a></li>
-                </c:if>
-                <li><button class="btnLogin"><a href="<c:url value='${loginoutlink }' />">${loginout}</a></button></li>
+        <ul class="navbar__menu">
+            <li><a href="${pageContext.request.contextPath}/main">댕댕여지도</a></li>
+            <li><a href="${pageContext.request.contextPath}/dangguen">댕근마켓</a></li>
+            <li><a href="${pageContext.request.contextPath}/dangcare">댕댕케어</a></li>
+            <li><a href="${pageContext.request.contextPath}/dangcomu/list">댕댕커뮤</a></li>
+            <li><a href="${pageContext.request.contextPath}/dangoffice">댕사무소</a></li>
+            <c:if test="${ member != null }">
+                <li><a href="${pageContext.request.contextPath}/mypage"><i class="fa fa-user-o" id="btnMypage" aria-hidden="true"></i></a></li>
+            </c:if>
+            <li><button class="btnLogin"><a href="<c:url value='${loginoutlink }' />">${loginout}</a></button></li>
 
-            </ul>
-            <a href="#" class="navbar__toggleBtn">
-                <i class="fas fa-bars" aria-hidden="true"></i>
-            </a>
-        </nav>
-    </header>
-    <br>
-    <section class="mypage">
-        <div class="mypage__left">
+        </ul>
+
+        <a href="#" class="navbar__toggleBtn">
+            <i class="fas fa-bars" aria-hidden="true"></i>
+        </a>
+    </nav>
+</header>
+
+
+<br>
+    <article id="mypage">
+        <aside class="mypage_aside">
             <div class="mypage__profile">
                 <div>
                     <img src="resources/image/profile.png" alt="프로필사진">
                 </div>
                 <p>${member.user_nickname }님 안녕하세요</p>
-                <a class="money" href="/withdang/money">댕근 머니 : 50,000</a>
-                <br>
                 <hr class="profile-line">
-            </div>
             <div class="mypage__list">
                 <ul>
-                    <li><a href="/withdang/mypage">내 정보</a></li>
-                    <li><a href="">강아지 정보</a></li>
+                     <li><a href="/withdang/mypage">내 정보</a></li>
                     <li><a href="/withdang/mypage_chat">채팅</a></li>
-                    <li><a href="">판매 목록</a></li>
-                    <li><a href="">찜 목록</a></li>
+                    <li><a href="/withdang/myDangguen">마이댕근</a></li>
+                    <li><a href="/withdang/myCare">마이케어</a></li>
                 </ul>
+                </div>
             </div>
         </div>
-        
-        <div class="mypage__mid">
-        	<form id="update_form" method="post">
-            <div class="mypage-user">
+        </aside>
+        	<form id="update_form" class="mypage-user" method="post">
                 <ul>
-                    <div><p class="user-info"> 내 정보</p></div>
+                    <p class="user-info"> 내 정보</p>
                     <div>이름 : <input name="user_name" value="${member.user_name }" readonly="readonly"></div>
                     <div>이메일 : <input name="user_email" value="${member.user_email }" readonly="readonly"></div>
                     <div><p>비밀번호 변경 : <input type="password" class="input_pw" name="user_pw" value="${member.user_pw }"></p></div>
@@ -89,74 +91,163 @@
                 	<!-- <span class="pwck_input_re_2">비밀번호가 일치하지 않습니다.</span> -->
                     <div><p>닉네임 : <input type="text" name="user_nickname" value="${member.user_nickname }"></p></div>
                     <div><p>연락처 : <input type="text" name="user_pnum" value="${member.user_pnum }"></p></div>
-                    <div><p>생일 :  <input type="date" name="user_birth" value="${member.user_birth }" pattern="yyyy-MM-dd"></p></div> 
+                    <div><p>생일 : <input type="date" name="user_birth" value="<fmt:formatDate value="${member.user_birth }" pattern="yyyy-MM-dd"/>" /></p></div> 
                     <div>성별:
                      <select class="form-select" name="user_gender">
-                    	<option value="성별" selected disabled hidden>${member.user_gender }</option>
-                    	<option value="남자">남자</option>
-                    	<option value="여자">여자</option>
+                    	<option value="" selected disabled hidden>성별</option>
+                    	<option value="남자" ${member.user_gender=='남자' ? "selected" : "" }>남자</option>
+                    	<option value="여자" ${member.user_gender=='여자' ? "selected" : "" }>여자</option>
                     </select>
                    	</div>
-                    <div><p>주소 : <input type="text" name="user_address" value="${member.user_address }"></p></div>
-                        
+                    <%-- <div><p>주소 : <input type="text" name="user_address" value="${member.user_address }"></p></div> --%>
+                    <div class="address_wrap">
+						<div class="address_name">주소</div>
+						<div class="address_input_1_wrap">
+							<span class="address_input_1_box">
+								<input class="input_address" name="user_address" value="${member.user_address }" readonly="readonly">
+							</span>
+							<span class="address_button" onclick="execution_daum_address()">
+								<span><button type="button" class="address_button">주소 찾기</button></span>
+							</span>	
+							<!-- </div> -->
+							<div class="clearfix"></div>
+						</div>
+							<!-- <div class ="address_input_2_wrap">
+								<div class="address_input_2_box">
+									<input class="address_input_2" name="user_address" readonly="readonly">
+								</div>
+							</div> -->
+							<!-- <div class ="address_input_3_wrap">
+								<div class="address_input_3_box">
+									<input class="address_input_3" name="memberAddr3" readonly="readonly">
+								</div>
+							</div> -->
+					</div>
+         
                 </ul>
-            </div>
-        	
-        </div>
-		
-		
-        <div class="mypage__right">
+            <hr />
         	<!-- <form id="dogUpdate_form" method="post"> -->
             <div class="mypage-dog">
                 <ul>
                     <p class="dog-info">강아지 정보</p>
                     <p>이름 : <input type="text" name="dog_name" value="${dvo.dog_name }"></p>
-                    <p>생일 : <input type="date" name="dog_birth" value="${dvo.dog_birth }"></p>
+                    <p>생일 : <input type="date" name="dog_birth" value="<fmt:formatDate value="${dvo.dog_birth }" pattern="yyyy-MM-dd"/>" /></p>
                     <p>성별 : 
                     <select id="gender-check" class="form-select" name="dog_gender">
-                    	<option value="성별" selected disabled hidden>${dvo.dog_gender }</option>
-                    	<option value="수컷">수컷</option>
-                    	<option value="암컷">암컷</option>
+                    	<option value="" selected disabled hidden>성별</option>
+                    	<option value="수컷" ${dvo.dog_gender=='수컷' ? "selected" : "" }>수컷</option>
+                    	<option value="암컷" ${dvo.dog_gender=='암컷' ? "selected" : "" }>암컷</option>
                     </select>
                     </p>
                     <p>중성화 : 
                     <select class="form-select" name="dog_nutd">
-                    	<option value="중성화" selected disabled hidden>${dvo.dog_nutd }</option>
-                    	<option value="O">O</option>
-                    	<option value="X">X</option>
+                    	<option value="" selected disabled hidden>중성화</option>
+                    	<option value="했음" ${dvo.dog_nutd=='했음' ? "selected" : "" }>했음</option>
+                    	<option value="안했음" ${dvo.dog_nutd=='안했음' ? "selected" : "" }>안함</option>
                     </select>
                     </p>
                     <p>견종 : <input type="text" name="dog_breed" value="${dvo.dog_breed }"></p>
                     <p>동물등록번호 : <input type="text" name="dog_regnum" value="${dvo.dog_regnum }"></p>
-                    <p>주소 : <input type="text" name="dog_address" value="${dvo.dog_address }"></p>
-                    <p>특징 : <input type="text" name="dog_feature" value="${dvo.dog_feature }"></p>
-                    
+                    <%-- <p>주소 : <input type="text" name="dog_address" value="${dvo.dog_address }"></p> --%>
+                    <%-- <div class="address_wrap">
+						<div class="address_name">주소</div>
+						<div class="address_input_1_wrap">
+							<span class="address_input_1_box">
+								<input class="input_address" name="dog_address" value="${dvo.dog_address }" readonly="readonly">
+							</span>
+							<span class="address_button" onclick="execution_daum_address()">
+								<span><button type="button" class="address_button">주소 찾기</button></span>
+							</span>	 --%>
+							<!-- </div> -->
+							<!-- <div class="clearfix"></div>
+						</div> -->
+							<!-- <div class ="address_input_2_wrap">
+								<div class="address_input_2_box">
+									<input class="address_input_2" name="user_address" readonly="readonly">
+								</div>
+							</div> -->
+							<!-- <div class ="address_input_3_wrap">
+								<div class="address_input_3_box">
+									<input class="address_input_3" name="memberAddr3" readonly="readonly">
+								</div>
+							</div> -->
+					<!-- </div> -->
+                    <p>특징 : </P><textarea name="dog_feature">${dvo.dog_feature }</textarea> <%-- <input type="text" name="dog_feature" value="${dvo.dog_feature }"></p>
+                     --%>
                 </ul>
             </div>
         	</form>
-        </div>
-    </section>
+    </article>
     <footer>
         <div class="mypage__update">
             <br>
-            <input type="button" class="update_btn" value="수정하기">
+            <button type="button" class="update_btn" value="수정하기">수정하기</button>
         </div>
     </footer>
-    
     <br><br><br><br>
     
     <script type="text/javascript">
-    /* $("#gender-check").val(dog_gender) */
-    
-    /* $(document).ready(function(){  */
-    	 
-    	 
+
     	 /* 회원 정보 수정 클릭 메서드 */
 	    $(".update_btn").click(function(){
 	    	/* 업데이트 메서드 서버 요청 */
 	        $("#update_form").attr("action", "/withdang/mypage_update").submit();
 	    });
-	/*  }); */ 
+    	 
+	    /* 다음 주소 연동 */
+	    function execution_daum_address(){
+	    	
+	    	new daum.Postcode({
+	            oncomplete: function(data) {
+	                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+	                
+	            	// 각 주소의 노출 규칙에 따라 주소를 조합한다.
+	                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+	                var addr = ''; // 주소 변수
+	                var extraAddr = ''; // 참고항목 변수
+	 
+	                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+	                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+	                    addr = data.sido;
+	                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+	                    addr = data.sido;
+	                }
+	 
+	               	// 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+	                if(data.userSelectedType === 'R'){
+	                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+	                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+	                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+	                        extraAddr += data.sigungu;
+	                    }
+	                    /* // 건물명이 있고, 공동주택일 경우 추가한다.
+	                    if(data.buildingName !== '' && data.apartment === 'Y'){
+	                        extraAddr += (extraAddr !== '' ? ', ' + data.sigungu : data.sigungu);
+	                    } */
+	                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+	                    if(extraAddr !== ''){
+	                        extraAddr = ' ' + extraAddr + ' ';
+	                    }
+	                 	// 주소변수 문자열과 참고항목 문자열 합치기
+	                    addr += extraAddr;
+	                
+	                } else {
+	                	addr += ' ' + data.sigungu;
+	                } 
+	               	
+
+	                $(".input_address").val(addr);
+	                //$("[name=memberAddr1]").val(data.zonecode);    // 대체가능
+	                /* $(".address_input_2").val(addr); */
+	                //$("[name=memberAddr2]").val(addr);            // 대체가능
+	             	/* // 상세주소 입력란 disabled 속성 변경 및 커서를 상세주소 필드로 이동한다.
+	                $(".address_input_3").attr("readonly",false);
+	                 $(".address_input_3").focus(); */
+	     
+	            }
+	        }).open();    
+	    	
+	    }
     
     </script>
 </body>

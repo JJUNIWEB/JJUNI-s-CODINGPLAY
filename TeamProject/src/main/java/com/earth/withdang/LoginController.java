@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.earth.domain.DogDto;
-import com.earth.domain.MemberInfoDto;
 import com.earth.domain.MemberDto;
 import com.earth.service.MemberService;
 
@@ -35,17 +34,12 @@ public class LoginController {
 	
 	@Autowired
 	private MemberService memberservice;
-	
-	@GetMapping(value = "/")
-	public String mainPageGET() {
-		return "/main";
-		
-	}
+
 	
 	@GetMapping(value="/login")
 	public String loginGET() {
 		
-		return "/login";
+		return "login";
 	}
 	
 	/* 로그인 */
@@ -66,14 +60,14 @@ public class LoginController {
 			//2-2-2. 응답헤더에 저장 			
 			Cookie cookie = new Cookie("email", user_email);
 			response.addCookie(cookie);
-		}
+		} else {
 
 			//2-3-1. 쿠키를 삭제
 			//2-3-2. 응답헤더에 저장 	
 			Cookie cookie = new Cookie("email", user_email);
 			cookie.setMaxAge(0);
 			response.addCookie(cookie);
-
+		}
 	
 		if(lvo == null) {                                // 일치하지 않는 아이디, 비밀번호 입력 경우
         
@@ -90,12 +84,13 @@ public class LoginController {
 			session.setAttribute("member", lvo);             // 일치하는 아이디, 비밀번호 경우 (로그인 성공)
 			session.setAttribute("dvo", dvo);
 			
-			return "redirect:/";
+			return "redirect:/mypage";
 			}
 	
 			HttpSession session = request.getSession();
 			session.setAttribute("member", lvo);             // 일치하는 아이디, 비밀번호 경우 (로그인 성공)
 			session.setAttribute("dvo", dvo);
+			
 		    return "redirect:/";
 		
     }

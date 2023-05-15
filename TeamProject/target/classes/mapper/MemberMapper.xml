@@ -13,7 +13,7 @@
 				select a.user_email
 				from tb_user a left join tb_doginfo b
 				on a.user_email = b.user_email
-				where b.user_email is null
+				where b.user_email = #{user_email} is null
 			)
 		</insert>
 		

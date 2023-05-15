@@ -3,7 +3,6 @@ package com.earth.mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.earth.domain.DogDto;
-import com.earth.domain.MemberInfoDto;
 import com.earth.domain.MemberDto;
 
 
