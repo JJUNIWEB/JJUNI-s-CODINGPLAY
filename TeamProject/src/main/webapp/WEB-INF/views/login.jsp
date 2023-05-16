@@ -259,7 +259,14 @@
          	pwckcorCheck = false;
      }        
    	    
-   	});    
+   	});
+	
+   	/* 입력 이메일 형식 유효성 검사 */
+    function mailFormCheck(email){
+    	var form = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+    	return form.test(email);
+    
+   }
  
    	
    	/* $(document).ready(function(){ */

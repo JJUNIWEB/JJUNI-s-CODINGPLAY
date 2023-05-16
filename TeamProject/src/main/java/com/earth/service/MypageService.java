@@ -11,9 +11,4 @@ public interface MypageService {
     //강아지 정보 수정
     public void dogUpdate(DogDto dog) throws Exception;
     
-    //회원정보가져오기
-    public MemberDto memberSelect(MemberDto member) throws Exception;
-    
-    //도그정보가져오기
-    public DogDto dogSelect(DogDto dog) throws Exception;
 }

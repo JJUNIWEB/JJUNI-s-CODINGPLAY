@@ -25,16 +25,4 @@ public class MypageServiceImpl implements MypageService {
 		
 	}
 
-	@Override
-	public MemberDto memberSelect(MemberDto member) throws Exception {
-		
-		return myMapper.memberSelect(member);
-	}
-
-	@Override
-	public DogDto dogSelect(DogDto dog) throws Exception {
-		
-		return myMapper.dogSelect(dog);
-	}
-
 }

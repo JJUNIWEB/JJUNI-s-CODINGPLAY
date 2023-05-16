@@ -1,6 +1,7 @@
 package com.earth.withdang;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +20,9 @@ public class RegisterController {
 
 	@Autowired
 	private MemberService memberservice;
+	
+	@Autowired
+	private BCryptPasswordEncoder pwEncoder;
 		
 		@GetMapping("/agreement")
 		public String agreeMentGET() {
@@ -28,8 +32,16 @@ public class RegisterController {
 		//회원가입 서비스 실행
 		@PostMapping("/join")
 		public String joinPOST(MemberDto member) throws Exception {
-			memberservice.memberJoin(member);
-			memberservice.dogInsert(member);
+			
+			String rawPw = "";            // 인코딩 전 비밀번호
+	        String encodePw = "";        // 인코딩 후 비밀번호
+	        
+	        rawPw = member.getUser_pw();	// 비밀번호 데이터 얻음
+	        encodePw = pwEncoder.encode(rawPw);	// 비밀번호 인코딩
+	        member.setUser_pw(encodePw);		// 인코딩된 비밀번호 member객체에 다시 저장
+	        
+	        memberservice.memberJoin(member);
+	        memberservice.dogInsert(member);
 			
 			return "redirect:/login";
 			

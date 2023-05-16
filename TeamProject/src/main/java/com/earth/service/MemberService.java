@@ -26,6 +26,9 @@ public interface MemberService {
 	/* 로그인 */
     public MemberDto memberLogin(MemberDto member) throws Exception;
     
+    //회원정보가져오기
+    public MemberDto memberSelect(MemberDto member) throws Exception;
+    
     //도그정보가져오기
     public DogDto dogSelect(DogDto dog) throws Exception;
     

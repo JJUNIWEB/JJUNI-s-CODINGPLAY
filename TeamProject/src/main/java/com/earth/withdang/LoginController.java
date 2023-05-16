@@ -12,6 +12,7 @@ import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,6 +35,9 @@ public class LoginController {
 	
 	@Autowired
 	private MemberService memberservice;
+	
+	@Autowired
+	private BCryptPasswordEncoder pwEncoder;
 
 	
 	@GetMapping(value="/login")
@@ -46,11 +50,15 @@ public class LoginController {
     @RequestMapping(value="/login", method = RequestMethod.POST)
     public String loginPOST(String user_email,HttpServletRequest request, 
     		HttpServletResponse response, boolean rememberEmail ,MemberDto member, 
-    		DogDto dog, RedirectAttributes rttr, Model m) throws Exception{
-        
+    		DogDto dog, RedirectAttributes rttr) throws Exception{
+       
 	System.out.println("login 메서드 진입");
     System.out.println("전달된 데이터 : " + member);
-	
+    
+    HttpSession session = request.getSession();
+    String rawPw = "";
+    String encodePw = "";
+    
 	MemberDto lvo = memberservice.memberLogin(member);
 	DogDto dvo = memberservice.dogSelect(dog);
 	//DogDto dog = new DogDto();
@@ -69,30 +77,38 @@ public class LoginController {
 			response.addCookie(cookie);
 		}
 	
-		if(lvo == null) {                                // 일치하지 않는 아이디, 비밀번호 입력 경우
+		if(lvo != null) {                                // 일치하지 하는 아이디 존재시
         
-	        int result = 0;
-	        rttr.addFlashAttribute("result", result);
-	        return "redirect:/login";
-	        
+			rawPw = member.getUser_pw();        // 사용자가 제출한 비밀번호
+            encodePw = lvo.getUser_pw();        // 데이터베이스에 저장한 인코딩된 비밀번호
+            
+            if(true == pwEncoder.matches(rawPw, encodePw)) {        // 비밀번호 일치여부 판단
+            	//lvo.setUser_pw("");                    // 인코딩된 비밀번호 정보 지움
+                session.setAttribute("member", lvo);     // session에 사용자의 정보 저장
+                session.setAttribute("dvo", dvo);
+                
+                if(!memberCheck(member)) {
+        			rttr.addFlashAttribute("msg", "memberCheck");
+        			
+        			session.setAttribute("member", lvo);             // 일치하는 아이디, 비밀번호 경우 (로그인 성공)
+        			session.setAttribute("dvo", dvo);
+        			
+        			return "redirect:/mypage";
+        		}
+                
+                return "redirect:/";        // 메인페이지 이동
+                
+            } else {
+            	rttr.addFlashAttribute("result", 0);            
+                return "redirect:/login";    // 로그인 페이지로 이동
+            }
+            
+	    } else {										//일치하는 아이디가 존재하지 않을 시(로그인 실패)
+	    	
+	    	rttr.addFlashAttribute("result", 0);
+	    	return "redirect:/login";
 	    }
-	
-		if(!memberCheck(member)) {
-			rttr.addFlashAttribute("msg", "memberCheck");
-
-			HttpSession session = request.getSession();
-			session.setAttribute("member", lvo);             // 일치하는 아이디, 비밀번호 경우 (로그인 성공)
-			session.setAttribute("dvo", dvo);
-			
-			return "redirect:/mypage";
-			}
-	
-			HttpSession session = request.getSession();
-			session.setAttribute("member", lvo);             // 일치하는 아이디, 비밀번호 경우 (로그인 성공)
-			session.setAttribute("dvo", dvo);
-			
-		    return "redirect:/";
-		
+    
     }
     
     @GetMapping("/logout")

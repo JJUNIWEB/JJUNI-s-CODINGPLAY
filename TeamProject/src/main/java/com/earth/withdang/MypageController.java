@@ -15,6 +15,7 @@ import com.earth.domain.MemberDto;
 import com.earth.service.MemberService;
 import com.earth.service.MypageService;
 
+import io.swagger.annotations.Authorization;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
@@ -23,6 +24,9 @@ public class MypageController {
 	
 	@Autowired
 	private MypageService myService;
+	
+	@Autowired
+	private MemberService memberService;
 	
 	@GetMapping("/mypage")
 	public void mypageGET () {
@@ -60,8 +64,8 @@ public class MypageController {
        
         myService.memberUpdate(member);
         myService.dogUpdate(dog);
-        MemberDto mvo = myService.memberSelect(member);
-        DogDto dvo = myService.dogSelect(dog);
+        MemberDto mvo = memberService.memberSelect(member);
+        DogDto dvo = memberService.dogSelect(dog);
         
         HttpSession session = request.getSession();
 		session.setAttribute("member", mvo);
