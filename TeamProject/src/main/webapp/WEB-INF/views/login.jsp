@@ -105,7 +105,8 @@
 	    var nickNameCheck = false;		 // 닉네임
 	    var nickNameckCheck = false;	// 닉네임 중복
         var pwdCheck = false;			// 비번 정규식 확인	
-      	
+      	var boxCheck = false;
+        
         $(document).ready(function(){
         	//회원가입 버튼(회원가입 기능 작동)
         	$(".btn").click(function(){
@@ -118,7 +119,15 @@
         var nickname = $('.input_nickname').val();			  // 닉네임 입력란
         var pwdCheck = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
         var warnMsg = $(".mail_input_box_warn");    // 이메일 입력 경고글
-               
+        var checked = $("#register-check").is(":checked");
+        
+        	if(!checked) {
+        		alert("회원가입 약관에 동의해주세요.")
+        		boxCheck = false;
+        	} else {
+        		boxCheck = true;
+        	}
+        
            /* 이메일 유효성검사 */
            if(email == ""){
                $('.final_email_ck').css('display','block');
@@ -175,7 +184,7 @@
           }
           
           /* 최종 유효성 검사 */
-          if(emailCheck&&emailckCheck&&pwCheck&&pwckCheck&&pwckcorCheck&&nameCheck&&pwdCheck&&nickNameCheck&&nickNameckCheck){
+          if(emailCheck&&emailckCheck&&pwCheck&&pwckCheck&&pwckcorCheck&&nameCheck&&pwdCheck&&nickNameCheck&&nickNameckCheck&&boxCheck){
    		
           	$("#join_form").attr("action", "/withdang/join");
       		$("#join_form").submit();
