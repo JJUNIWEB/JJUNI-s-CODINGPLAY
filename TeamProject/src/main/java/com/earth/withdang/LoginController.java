@@ -46,6 +46,25 @@ public class LoginController {
 		return "login";
 	}
 	
+	@GetMapping(value="/find")
+	public String findPageGET() {
+		return "find";
+	}
+	
+	@PostMapping("/findEmail")
+	public String findEmail(MemberDto member, Model m) throws Exception {
+		MemberDto email = memberservice.findEmail(member);
+		
+		if(email == null) {
+			m.addAttribute("check", 1);
+		} else {
+			m.addAttribute("check", 0);
+			m.addAttribute("email", email.getUser_email());
+		}
+		
+		return "/findEmail";
+	}
+	
 	/* 로그인 */
     @RequestMapping(value="/login", method = RequestMethod.POST)
     public String loginPOST(String user_email,HttpServletRequest request, 

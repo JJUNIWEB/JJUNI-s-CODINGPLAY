@@ -31,5 +31,8 @@ public interface MemberMapper {
     
     //신규회원확인하기
     public MemberDto memberCheck(MemberDto member);
+    
+    //이메일 찾기
+    public MemberDto findEmail(MemberDto member);
    
 }

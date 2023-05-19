@@ -47,9 +47,9 @@
                     <div>
                     	<div id="label"><input id="chk" type="checkbox" name="rememberEmail" value="on" ${empty cookie.email.value ? "" : "checked"} />이메일 기억</div>
                     	<input type="button" class="login_button" value="로그인">
-                    	<!-- <button type="button" class="login_button" value="로그인"></button> -->
+                    	<!-- <button type="button" class="login_button" value="로그인">로그인</button> -->
                     </div>
-                    <a href="#">비밀번호를 잊으셨습니까?</a>
+                    <a href="/withdang/find">비밀번호를 잊으셨습니까?</a>
                 </form>
             </div>
             <div class="form signupform">
