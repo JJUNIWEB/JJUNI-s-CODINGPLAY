@@ -49,7 +49,10 @@
                     	<input type="button" class="login_button" value="로그인">
                     	<!-- <button type="button" class="login_button" value="로그인">로그인</button> -->
                     </div>
-                    <a href="/withdang/find">비밀번호를 잊으셨습니까?</a>
+                    <div>
+                    <span><a href="/withdang/find">이메일 찾기</a></span> |
+                    <span><a href="/withdang/find">비밀번호 찾기</a></span>
+                    </div>
                 </form>
             </div>
             <div class="form signupform">
@@ -122,14 +125,6 @@
         var warnMsg = $(".mail_input_box_warn");    // 이메일 입력 경고글
         var checked = $("#register-check").is(":checked");		// 체크박스 체크 확인
             
-        	/* 약관 동의 체크 */
-        	if(!checked) {
-        		alert("회원가입 약관에 동의해주세요.")
-        		boxCheck = false;
-        	} else {
-        		boxCheck = true;
-        	}
-        
            /* 이메일 유효성검사 */
            if(email == ""){
                $('.final_email_ck').css('display','block');
@@ -156,7 +151,15 @@
           	  }
           
           }
-        
+         
+          /* 약관 동의 체크 */
+	     	if(!checked) {
+	     		alert("회원가입 약관에 동의해주세요.")
+	     		boxCheck = false;
+	     	} else {
+	     		boxCheck = true;
+	     	}
+	       
           
           /* 비밀번호 확인 유효성 검사 */
           if(pwck == ""){

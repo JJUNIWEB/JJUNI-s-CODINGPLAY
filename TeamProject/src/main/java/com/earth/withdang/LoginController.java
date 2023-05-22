@@ -51,6 +51,7 @@ public class LoginController {
 		return "find";
 	}
 	
+	//이메일 찾기
 	@PostMapping("/findEmail")
 	public String findEmail(MemberDto member, Model m) throws Exception {
 		MemberDto email = memberservice.findEmail(member);

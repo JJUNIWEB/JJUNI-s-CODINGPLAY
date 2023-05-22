@@ -82,7 +82,7 @@
 	                    <div><p>성별 ${member.user_gender }</p></div>
 	                    <div><p>주소 ${member.user_address }</p></div>
 	                
-                    <a class="reset-pwd" href="">비밀번호 재설정</a>
+                    <a class="reset-pwd" href="/withdang/find">비밀번호 재설정</a>
                    </form>
             
          </article>

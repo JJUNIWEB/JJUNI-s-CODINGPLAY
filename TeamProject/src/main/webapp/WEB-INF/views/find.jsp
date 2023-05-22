@@ -1,129 +1,103 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<c:set var="loginout" value="${sessionScope.member==null ? 'Login' : 'Logout' }" />
+<c:set var="loginoutlink" value="${sessionScope.member==null ? '/login' : '/logout' }" />
 
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>이메일 찾기</title>
-<script
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
+    <script src="https://kit.fontawesome.com/cac1ec65f4.js" crossorigin="anonymous"></script>
+    <script src="${pageContext.request.contextPath}/resources/script/toggle.js" defer></script>
+    <script src="${pageContext.request.contextPath}/resources/script/html2canvas.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/script/dangoffice.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Gaegu&family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+	<script
 		  src="https://code.jquery.com/jquery-3.4.1.js"
 		  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
 		  crossorigin="anonymous">
 	</script>  
-<style>
-:root { -
-	-input-padding-x: 1.5rem; -
-	-input-padding-y: .75rem;
-}
-
-body {
-	background-color: white;
-}
-
-.card-signin {
-	border: 0;
-	border-radius: 1rem;
-	box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
-	overflow: hidden;
-}
-
-.card-signin .card-title {
-	margin-bottom: 2rem;
-	font-weight: 300;
-	font-size: 1.5rem;
-}
-
-.card-signin .card-body {
-	padding: 2rem;
-}
-
-.form-signin {
-	width: 100%;
-}
-
-.form-signin .btn {
-	font-size: 80%;
-	border-radius: 5rem;
-	letter-spacing: .1rem;
-	font-weight: bold;
-	padding: 1rem;
-	transition: all 0.2s;
-}
-
-.form-label-group {
-	position: relative;
-	margin-bottom: 1rem;
-}
-
-.form-label-group input {
-	height: auto;
-	border-radius: 2rem;
-}
-
-.form-label-group>input, .form-label-group>label {
-	padding: var(- -input-padding-y) var(- -input-padding-x);
-}
-
-.form-label-group>label {
-	position: absolute;
-	top: 0;
-	left: 0;
-	display: inline_block;
-	width: 100%;
-	margin-bottom: 0;
-	/* Override default `<label>` margin */
-	line-height: 1.5;
-	color: #495057;
-	border: 1px solid transparent;
-	border-radius: .25rem;
-	transition: all .1s ease-in-out;
-}
-
-.form-label-group input::-webkit-input-placeholder {
-	color: transparent;
-}
-
-.form-label-group input:-ms-input-placeholder {
-	color: transparent;
-}
-
-.form-label-group input::-ms-input-placeholder {
-	color: transparent;
-}
-
-.form-label-group input::-moz-placeholder {
-	color: transparent;
-}
-
-.form-label-group input::placeholder {
-	color: transparent;
-}
-
-.form-label-group input:not(:placeholder-shown) {
-	padding-top: calc(var(- -input-padding-y)+ var(- -input-padding-y)* (2/3));
-	padding-bottom: calc(var(- -input-padding-y)/3);
-}
-
-.form-label-group input:not(:placeholder-shown) ~label {
-	padding-top: calc(var(- -input-padding-y)/3);
-	padding-bottom: calc(var(- -input-padding-y)/3);
-	font-size: 12px;
-	color: #777;
-}
-</style>
+    <title>이메일 찾기</title>
 </head>
+
 <body>
-<form method="post" class="form-signin" action="/withdang/findEmail" name="findform">
+<header>
+    <nav class="navbar">
+
+        <div class="navbar__logo">
+            <a href="${pageContext.request.contextPath}/main">with DANG</a>
+        </div>
+
+        <ul class="navbar__menu">
+            <li><a href="${pageContext.request.contextPath}/main">댕댕여지도</a></li>
+            <li><a href="${pageContext.request.contextPath}/dangguen">댕근마켓</a></li>
+            <li><a href="${pageContext.request.contextPath}/dangcare">댕댕케어</a></li>
+            <li><a href="${pageContext.request.contextPath}/dangcomu/list">댕댕커뮤</a></li>
+            <li><a href="${pageContext.request.contextPath}/dangoffice">댕사무소</a></li>
+            <c:if test="${ member != null }">
+                <li><a href="${pageContext.request.contextPath}/mypage"><i class="fa fa-user-o" id="btnMypage" aria-hidden="true"></i></a></li>
+            </c:if>
+            <li><button class="btnLogin"><a href="<c:url value='${loginoutlink }' />">${loginout}</a></button></li>
+
+        </ul>
+
+        <a href="#" class="navbar__toggleBtn">
+            <i class="fas fa-bars" aria-hidden="true"></i>
+        </a>
+    </nav>
+</header>
+
+<form method="post" class="form-signin" id="Chk-form" name="findform">
 		<div class="form-label-group">
-			<input type="text" id="name" name="user_nickname" class="form-control" placeholder="닉네임을 입력해주세요."/>
+			<span><input type="text" id="name" name="user_nickname" class="input_nickname" placeholder="닉네임을 입력해주세요."/></span>
+			<span class="nickname_ck">닉네임을 입력해 주세요</span>
 		</div>
-		<div class="form-label-group">
-				<input class="btn btn-lg btn-secondary btn-block text-uppercase"
-					type="submit" value="OK">
-			</div>
 	</form>
+		<div class="form-label-group">
+			<input class="btn"
+				type="button" value="OK">
+		</div>
+
+	<script type="text/javascript">
+	
+		var nicknameCheck = false;
+	
+		$(document).ready(function() {
+			$(".btn").click(function(){
+			var nickname = $('.input_nickname').val();          // 닉네임 입력란
+			
+			if(nickname == "") {
+				$('.nickname_ck').css('display','block');
+				nicknameCheck = false;
+			} else {
+				$('.nickname_ck').css('display','none');
+				nicknameCheck = true;
+			}
+			
+			if(nicknameCheck) {
+				
+				$("#Chk-form").attr("action", "/withdang/findEmail");
+	      		$("#Chk-form").submit();
+			}
+			
+			return false;
+			
+			});	
+		});
+	</script>
+
+
+
+
+
 
 </body>
+
 </html>

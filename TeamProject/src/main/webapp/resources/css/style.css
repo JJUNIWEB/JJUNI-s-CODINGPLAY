@@ -334,3 +334,7 @@ a {
 .map {
     width: 60% auto;
 }
+
+.nickname_ck{
+    display: none;
+}

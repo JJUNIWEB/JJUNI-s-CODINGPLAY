@@ -99,7 +99,6 @@
                     	<option value="여자" ${member.user_gender=='여자' ? "selected" : "" }>여자</option>
                     </select>
                    	</div>
-                    <%-- <div><p>주소 : <input type="text" name="user_address" value="${member.user_address }"></p></div> --%>
                     <div class="address_wrap">
 						<div class="address_name">주소</div>
 						<div class="address_input_1_wrap">
@@ -114,19 +113,13 @@
 						</div>
 							<div class ="address_input_2_wrap">
 								<div class="address_input_2_box">
-									<input class="address_input_2" name="user_dtl_address" readonly="readonly">
+									<input class="address_input_2" name="user_dtl_address" value="${member.user_dtl_address }" readonly="readonly">
 								</div>
 							</div>
-							<!-- <div class ="address_input_3_wrap">
-								<div class="address_input_3_box">
-									<input class="address_input_3" name="memberAddr3" readonly="readonly">
-								</div>
-							</div> -->
 					</div>
          
                 </ul>
             <hr />
-        	<!-- <form id="dogUpdate_form" method="post"> -->
             <div class="mypage-dog">
                 <ul>
                     <p class="dog-info">강아지 정보</p>
@@ -143,37 +136,12 @@
                     <select class="form-select" name="dog_nutd">
                     	<option value="" selected disabled hidden>중성화</option>
                     	<option value="했음" ${dvo.dog_nutd=='했음' ? "selected" : "" }>했음</option>
-                    	<option value="안했음" ${dvo.dog_nutd=='안했음' ? "selected" : "" }>안함</option>
+                    	<option value="안했음" ${dvo.dog_nutd=='안함' ? "selected" : "" }>안함</option>
                     </select>
                     </p>
                     <p>견종 : <input type="text" name="dog_breed" value="${dvo.dog_breed }"></p>
                     <p>동물등록번호 : <input type="text" name="dog_regnum" value="${dvo.dog_regnum }"></p>
-                    <%-- <p>주소 : <input type="text" name="dog_address" value="${dvo.dog_address }"></p> --%>
-                    <%-- <div class="address_wrap">
-						<div class="address_name">주소</div>
-						<div class="address_input_1_wrap">
-							<span class="address_input_1_box">
-								<input class="input_address" name="dog_address" value="${dvo.dog_address }" readonly="readonly">
-							</span>
-							<span class="address_button" onclick="execution_daum_address()">
-								<span><button type="button" class="address_button">주소 찾기</button></span>
-							</span>	 --%>
-							<!-- </div> -->
-							<!-- <div class="clearfix"></div>
-						</div> -->
-							<!-- <div class ="address_input_2_wrap">
-								<div class="address_input_2_box">
-									<input class="address_input_2" name="user_address" readonly="readonly">
-								</div>
-							</div> -->
-							<!-- <div class ="address_input_3_wrap">
-								<div class="address_input_3_box">
-									<input class="address_input_3" name="memberAddr3" readonly="readonly">
-								</div>
-							</div> -->
-					<!-- </div> -->
-                    <p>특징 : </P><textarea name="dog_feature">${dvo.dog_feature }</textarea> <%-- <input type="text" name="dog_feature" value="${dvo.dog_feature }"></p>
-                     --%>
+                    <p>특징 : </p><textarea name="dog_feature">${dvo.dog_feature }</textarea>
                 </ul>
             </div>
         	</form>
