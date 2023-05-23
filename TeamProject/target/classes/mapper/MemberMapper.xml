@@ -65,7 +65,7 @@
   		<select id="findEmail" resultType="MemberDto">
   			select a.user_email
 			from tb_user a
-			where a.user_nickname = #{user_nickname}
+			where a.user_name = #{user_name} and a.user_nickname = #{user_nickname}
   		</select>
   		
   </mapper>
