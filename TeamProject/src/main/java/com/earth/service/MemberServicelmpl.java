@@ -69,5 +69,11 @@ public class MemberServicelmpl implements MemberService {
 		return membermapper.findEmail(member);
 	}
 
+	@Override
+	public MemberDto findPwd(MemberDto member) throws Exception {
+		
+		return membermapper.findPwd(member);
+	}
+
 
 	}

@@ -335,6 +335,14 @@ a {
     width: 60% auto;
 }
 
-.nickname_ck{
+.info_ck {
+    display: none;
+}
+
+.nickname_ck {
+    display: none;
+}
+
+.name_ck {
     display: none;
 }

@@ -34,5 +34,8 @@ public interface MemberMapper {
     
     //이메일 찾기
     public MemberDto findEmail(MemberDto member);
+    
+    //비밀번호 찾기
+    public MemberDto findPwd(MemberDto member);
    
 }

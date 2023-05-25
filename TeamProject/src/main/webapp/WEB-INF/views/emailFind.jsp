@@ -58,7 +58,9 @@
 		<div class="form-label-group">
 			<span><input type="text" id="name" name="user_name" class="input_name" placeholder="이름을 입력해주세요."/></span>
 			<span><input type="text" id="nickname" name="user_nickname" class="input_nickname" placeholder="닉네임을 입력해주세요."/></span>
+			<span class="info_ck">정보를 입력해 주세요</span>
 			<span class="nickname_ck">닉네임을 입력해 주세요</span>
+			<span class="name_ck">이름을 입력해 주세요</span>
 		</div>
 	</form>
 		<div class="form-label-group">
@@ -68,23 +70,35 @@
 
 	<script type="text/javascript">
 	
-		var nicknameCheck = false;
+		var infoCheck = false;
 	
 		$(document).ready(function() {
 			$(".btn").click(function(){
 			var nickname = $('.input_nickname').val();          // 닉네임 입력란
+			var name = $('.input_name').val();					// 이름 입력란
 			
-			if(nickname == "") {
+			if(nickname == "" && name == "") {
+				$('.info_ck').css('display','block');
+				infoCheck = false;
+			} else if(nickname == "") {
 				$('.nickname_ck').css('display','block');
-				nicknameCheck = false;
-			} else {
+				$('.info_ck').css('display','none');
+				infoCheck = false;
+			} else if(name == "") {
+				$('.name_ck').css('display','block');
+				$('.info_ck').css('display','none');
 				$('.nickname_ck').css('display','none');
-				nicknameCheck = true;
+				infoCheck = false;
+			} else {
+				$('.info_ck').css('display','none');
+				$('.nickname_ck').css('display','none');
+				$('.name_ck').css('display','none');
+				infoCheck = true;
 			}
 			
-			if(nicknameCheck) {
+			if(infoCheck) {
 				
-				$("#Chk-form").attr("action", "/withdang/findEmail");
+				$("#Chk-form").attr("action", "/withdang/emailFindRes");
 	      		$("#Chk-form").submit();
 			}
 			

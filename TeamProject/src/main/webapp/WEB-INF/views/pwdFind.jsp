@@ -24,7 +24,7 @@
 		  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
 		  crossorigin="anonymous">
 	</script>  
-    <title>이메일 찾기</title>
+    <title>비밀번호 찾기</title>
 </head>
 
 <body>
@@ -53,19 +53,49 @@
         </a>
     </nav>
 </header>
-		<!-- 닉네임이 일치하지 않을 때-->
-		<c:if test="${check == 1}">
-			<p>입력하신 정보가 없거나 일치하지 않습니다.</p>
-			<span><a href="/withdang/login">로그인으로 돌아가기</a></span> |
-			<span><a href="/withdang/find">다시 찾기</a></span>
-		</c:if>
 
-		<!-- 이름과 비밀번호가 일치 -->
-		<c:if test="${check == 0 }">
-		<p>찾으시는 이메일은' ${email}' 입니다.</p>
-		<span><a href="/withdang/login">로그인으로 돌아가기</a></span> |
-		<span><a href="/withdang/find">다시 찾기</a></span>
-		</c:if>
-
+<form method="post" class="form-signin" id="Chk-form" name="findform">
+		<div class="form-label-group">
+			<span><input type="text" id="name" name="user_name" class="input_name" placeholder="이름을 입력해주세요."/></span>
+			<span><input type="text" id="nickname" name="user_nickname" class="input_nickname" placeholder="닉네임을 입력해주세요."/></span>
+			<span class="nickname_ck">닉네임을 입력해 주세요</span>
+			<span><input type="text" id="email" name="user_email" class="input_email" placeholder="이메일을 입력해주세요."/></span>
+			<span class="info_ck">정보를 입력해 주세요</span>
+		</div>
+	</form>
+		<div class="form-label-group">
+			<input class="btn"
+				type="button" value="OK">
+		</div>
+		
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".btn").click(function() {
+				
+				var nickname = $('.input_nickname').val();          // 닉네임 입력란
+				var name = $('.input_name').val();					// 이름 입력란
+				var email = $('.input_email').val();				// 이메일 입력란
+				
+				if(nickname == "" || name == "" || email == "") {
+					$('.info_ck').css('display','block');
+					infoCheck = false;
+				} else {
+					$('.info_ck').css('display','none');
+					infoCheck = true;
+				}
+				
+				if(infoCheck) {
+				
+				$("#Chk-form").attr("action", "/withdang/pwdFindRes");
+	      		$("#Chk-form").submit();
+	      		
+				}
+				
+				return false;
+			});
+		});
+	
+	</script>
+    
 </body>
 </html>

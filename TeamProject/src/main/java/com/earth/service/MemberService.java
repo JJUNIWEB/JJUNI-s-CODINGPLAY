@@ -37,4 +37,7 @@ public interface MemberService {
     
     //이메일 찾기
     public MemberDto findEmail(MemberDto member) throws Exception;
+    
+    //비밀번호 찾기
+    public MemberDto findPwd(MemberDto member) throws Exception;
 }

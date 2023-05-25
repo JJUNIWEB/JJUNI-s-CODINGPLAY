@@ -50,8 +50,8 @@
                     	<!-- <button type="button" class="login_button" value="로그인">로그인</button> -->
                     </div>
                     <div>
-                    <span><a href="/withdang/find">이메일 찾기</a></span> |
-                    <span><a href="/withdang/find">비밀번호 찾기</a></span>
+                    <span><a href="/withdang/emailFind" >이메일 찾기</a></span> |
+                    <span><a href="/withdang/pwdFind" >비밀번호 찾기</a></span>
                     </div>
                 </form>
             </div>

@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <c:set var="loginout" value="${sessionScope.member==null ? 'Login' : 'Logout' }" />
@@ -52,6 +53,19 @@
         </a>
     </nav>
 </header>
-    
+		<!-- 닉네임이 일치하지 않을 때-->
+		<c:if test="${check == 1}">
+			<p>입력하신 정보가 없거나 일치하지 않습니다.</p>
+			<span><a href="/withdang/login">로그인으로 돌아가기</a></span> |
+			<span><a href="/withdang/emailFind">다시 찾기</a></span>
+		</c:if>
+
+		<!-- 이름과 비밀번호가 일치 -->
+		<c:if test="${check == 0 }">
+		<p>찾으시는 이메일은' ${email}' 입니다.</p>
+		<span><a href="/withdang/login">로그인으로 돌아가기</a></span> |
+		<span><a href="/withdang/emailFind">다시 찾기</a></span>
+		</c:if>
+
 </body>
 </html>

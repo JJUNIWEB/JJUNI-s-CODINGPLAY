@@ -46,13 +46,18 @@ public class LoginController {
 		return "login";
 	}
 	
-	@GetMapping(value="/find")
-	public String findPageGET() {
-		return "find";
+	@GetMapping(value="/emailFind")
+	public String emailFindGET() {
+		return "emailFind";
+	}
+	
+	@GetMapping(value="/pwdFind")
+	public String pwdFindGET() {
+		return "pwdFind";
 	}
 	
 	//이메일 찾기
-	@PostMapping("/findEmail")
+	@PostMapping("/emailFindRes")
 	public String findEmail(MemberDto member, Model m) throws Exception {
 		MemberDto email = memberservice.findEmail(member);
 		
@@ -63,7 +68,21 @@ public class LoginController {
 			m.addAttribute("email", email.getUser_email());
 		}
 		
-		return "/findEmail";
+		return "/emailFindRes";
+	}
+	
+	@PostMapping("/pwdFindRes")
+	public String findPwd(MemberDto member, Model m) throws Exception {
+		MemberDto pwd = memberservice.findPwd(member);
+		
+		if(pwd == null) {
+			m.addAttribute("check", 1);
+		} else {
+			m.addAttribute("check", 0);
+		}
+		
+		return "/pwdFindRes";
+		
 	}
 	
 	/* 로그인 */
