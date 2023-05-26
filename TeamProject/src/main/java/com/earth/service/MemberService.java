@@ -40,4 +40,7 @@ public interface MemberService {
     
     //비밀번호 찾기
     public MemberDto findPwd(MemberDto member) throws Exception;
+    
+    //비밀번호 변경
+    public void pwUpdate(MemberDto member) throws Exception;
 }

@@ -37,5 +37,8 @@ public interface MemberMapper {
     
     //비밀번호 찾기
     public MemberDto findPwd(MemberDto member);
+    
+    //비밀번호 찾기
+    public void pwUpdate(MemberDto member);
    
 }

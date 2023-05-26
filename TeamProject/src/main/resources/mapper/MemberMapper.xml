@@ -70,11 +70,17 @@
   		
   		<!-- 비밀번호 찾기  -->
   		<select id="findPwd" resultType="MemberDto">
-  			select a.user_pw
+  			select a.user_email, a.user_nickname, a.user_name
 			from tb_user a
 			where a.user_name = #{user_name} and a.user_nickname = #{user_nickname} and a.user_email = #{user_email}
   		</select>
   		
+  		<!-- 비밀번호 변경 -->
+  		<update id="pwUpdate">
+  			update tb_user a
+			set user_pw = #{user_pw}
+			where user_email = #{user_email} and user_name = #{user_name} and user_nickname = #{user_nickname}
+  		</update>
   </mapper>
 
 

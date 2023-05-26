@@ -2,6 +2,7 @@ package com.earth.withdang;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.http.HttpRequest;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -71,18 +72,37 @@ public class LoginController {
 		return "/emailFindRes";
 	}
 	
+	//비밀번호 찾기
 	@PostMapping("/pwdFindRes")
-	public String findPwd(MemberDto member, Model m) throws Exception {
+	public String findPwd(MemberDto member, Model m, HttpServletRequest request) throws Exception {
 		MemberDto pwd = memberservice.findPwd(member);
+		
+		HttpSession session = request.getSession();
+		
 		
 		if(pwd == null) {
 			m.addAttribute("check", 1);
 		} else {
+			session.setAttribute("member", pwd);
 			m.addAttribute("check", 0);
 		}
 		
 		return "/pwdFindRes";
 		
+	}
+	
+	@PostMapping("/pwUpdate")
+	public String pwUpdate(MemberDto member) throws Exception {
+		String rawPw = "";
+		String encodePw = "";
+		
+		rawPw = member.getUser_pw();
+		encodePw = pwEncoder.encode(rawPw);
+		member.setUser_pw(encodePw);
+		
+		memberservice.pwUpdate(member);
+		
+		return "redirect:/login";
 	}
 	
 	/* 로그인 */

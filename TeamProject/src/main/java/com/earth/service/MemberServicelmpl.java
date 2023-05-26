@@ -75,5 +75,12 @@ public class MemberServicelmpl implements MemberService {
 		return membermapper.findPwd(member);
 	}
 
+	@Override
+	public void pwUpdate(MemberDto member) throws Exception {
+		
+		membermapper.pwUpdate(member);
+		
+	}
+
 
 	}

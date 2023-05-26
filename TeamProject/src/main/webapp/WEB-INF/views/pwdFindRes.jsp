@@ -59,15 +59,60 @@
 			<span><a href="/withdang/login">로그인으로 돌아가기</a></span> |
 			<span><a href="/withdang/pwdFind">다시 찾기</a></span>
 		</c:if>
-
+	<form id="pwChangeFrm" method="post">
 		<!-- 입력한 정보 일치 -->
 		<c:if test="${check == 0 }">
 		<p>비밀번호 변경</p>
-		<input type="text" placeholder="비밀번호를 입력해주세요">
-		<input type="text" placeholder="비밀번호 확인을 입력해주세요">
+		<input type="hidden" name="user_email" value="${member.user_email }">
+		<input type="hidden" name="user_name" value="${member.user_name }">
+		<input type="hidden" name="user_nickname" value="${member.user_nickname }">
+		<input type="password" class="input_pw" name="user_pw" placeholder="비밀번호를 입력해주세요">
+		<input type="password" class="input_pwck" placeholder="비밀번호 확인을 입력해주세요">
+		<span class="pwck_input_re_1">비밀번호가 일치합니다.</span>
+        <span class="pwck_input_re_2">비밀번호가 일치하지 않습니다.</span>
 		<span><a href="/withdang/login">로그인으로 돌아가기</a></span> |
 		<span><a href="/withdang/pwdFind">다시 찾기</a></span>
 		</c:if>
+    </form>
+    <button type="button" class="btn" value="">변경</button>
     
+    <script type="text/javascript">
+    	var pwckcorCheck = false;        // 비번 확인 일치 확인
+    	
+    	$(document).ready(function() {
+			$(".btn").click(function() {
+				
+				if(pwckcorCheck) {
+				
+				$("#pwChangeFrm").attr("action", "/withdang/pwUpdate");
+	      		$("#pwChangeFrm").submit();
+	      		alert("비밀번호 변경이 완료되었습니다.")
+				}
+				
+				return false;
+				
+			});
+		});
+    	
+    	/* 비밀번호 확인 일치 유효성 검사 */
+        
+       	$('.input_pwck').on("propertychange change keyup paste input", function(){
+       	        
+       		var pw = $('.input_pw').val();
+       	    var pwck = $('.input_pwck').val();
+       	    $('.final_pwck_ck').css('display', 'none');
+       	    
+       	 	if(pw == pwck){
+             	$('.pwck_input_re_1').css('display','block');
+             	$('.pwck_input_re_2').css('display','none');
+             	pwckcorCheck = true;
+         	}else{
+            	$('.pwck_input_re_1').css('display','none');
+             	$('.pwck_input_re_2').css('display','block');
+             	pwckcorCheck = false;
+         }        
+       	    
+       	});
+    </script>
 </body>
 </html>
