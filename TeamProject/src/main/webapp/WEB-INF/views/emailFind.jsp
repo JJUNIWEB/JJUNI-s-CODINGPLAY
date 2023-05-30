@@ -54,17 +54,19 @@
     </nav>
 </header>
 
+<h3 class="email-find">이메일 찾기</h3>
 <form method="post" class="form-signin" id="Chk-form" name="findform">
 		<div class="form-label-group">
-			<span><input type="text" id="name" name="user_name" class="input_name" placeholder="이름을 입력해주세요."/></span>
-			<span><input type="text" id="nickname" name="user_nickname" class="input_nickname" placeholder="닉네임을 입력해주세요."/></span>
+			<div><input type="text" id="name" name="user_name" class="input_name" placeholder="이름을 입력해주세요."/></div>
+			<div><input type="text" id="nickname" name="user_nickname" class="input_nickname" placeholder="닉네임을 입력해주세요."/></div>
 			<span class="info_ck">정보를 입력해 주세요</span>
 		</div>
-	</form>
 		<div class="form-label-group">
 			<input class="btn"
-				type="button" value="OK">
+				type="button" value="이메일 찾기">
 		</div>
+	</form>
+		
 
 	<script type="text/javascript">
 	

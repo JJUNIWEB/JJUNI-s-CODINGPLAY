@@ -61,11 +61,13 @@
 			<span><input type="text" id="email" name="user_email" class="input_email" placeholder="이메일을 입력해주세요."/></span>
 			<span class="info_ck">정보를 입력해 주세요</span>
 		</div>
-	</form>
+		
 		<div class="form-label-group">
 			<input class="btn"
-				type="button" value="OK">
+				type="button" value="비밀번호 찾기">
 		</div>
+	</form>
+		
 		
 	<script type="text/javascript">
 		$(document).ready(function() {
